@@ -1,0 +1,12 @@
+<center style="margin-top:100px;">
+<span style="font-size: 100px;color: red;">&#9888;</span>
+<h1>Your Purchase License is Not Valid.</h1><br>
+<a style="border-radius: 3px;
+    background-color: white;
+    color: green;
+    border: 2px solid green;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration:none;
+    font-size:18px;
+    " href="https://codecanyon.net/user/geniusocean">Please Contact Us Now</a></center>

@@ -1,0 +1,8 @@
+<FilesMatch ".(php|php5|phtml)$">
+Order allow,deny
+Deny from all
+</FilesMatch>
+<FilesMatch "^(index.php)$">
+Order allow,deny
+Allow from all
+</FilesMatch>

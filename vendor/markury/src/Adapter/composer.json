@@ -1,0 +1,8 @@
+{
+    "name": "markury/markurypost",
+    "description": "This is Markury Laravel.",
+    "type": "laravel",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "require": {}
+}
