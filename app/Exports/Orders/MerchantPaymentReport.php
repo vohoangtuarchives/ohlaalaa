@@ -45,6 +45,7 @@ class MerchantPaymentReport extends DefaultValueBinder implements FromCollection
     {
         return [
             "order_id" => "Order Id",
+            "vendor_order_id" => "Vendor Id",
             "created_at" => "1. Order Date",
             "shop_id" => "2. Merchant",
             "shop_name" => "3. Merchant Name",

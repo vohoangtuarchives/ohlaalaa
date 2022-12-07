@@ -1740,6 +1740,7 @@ class OrderController extends Controller
         ->where('vinfo.is_paid',1)
         ->whereIn('is_handlingfee_collected',$iscollecteds)
         ->select(
+            'shop.id as vendor_orders_id',
             'shop.affilate_code as shop_id',
             'o1.id as order_id',
             'vendor_orders.product_id',
@@ -1800,7 +1801,7 @@ class OrderController extends Controller
         );
 
         $order_result = DB::query()->fromSub($order_details, 'od')
-            ->select('od.order_id','created_at', 'od.shop_id', 'shop_name', 'address','reg_number as TaxCode','email','order_number','status'
+            ->select('od.order_id','od.vendor_orders_id','created_at', 'od.shop_id', 'shop_name', 'address','reg_number as TaxCode','email','order_number','status'
                 , DB::raw('SUM(final_amount) as _9_Amount')
                 , DB::raw('SUM(shopping_point_used) as _10_Point')
                 , 'shopping_point_exchange_rate as _11_Rate'

@@ -5,6 +5,8 @@
 /storage/*.key
 /soft_delete_laravel
 .env
+.env2
+.schedule.data
 .env.backup
 .phpunit.result.cache
 Homestead.json
