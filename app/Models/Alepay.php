@@ -48,7 +48,7 @@ class Alepay
         if (!function_exists('json_decode')) {
             throw new Exception('Alepay needs the JSON PHP extension.');
         }
-        
+
         // set KEY
         if (isset($this->config) && !empty($this->config["tokenKey"])) {
             $this->apiKey = $this->config["tokenKey"];
@@ -56,7 +56,7 @@ class Alepay
         if (isset($this->config) && !empty($this->config["checksumKey"])) {
             $this->checksumKey = $this->config["checksumKey"];
         }
-        
+
 
         $this->alepayUtils = new AlepayUtils();
     }
@@ -77,7 +77,7 @@ class Alepay
             'returnUrl' => $request->returnUrl,
             'tokenKey' => $this->config["tokenKey"],
             'totalItem' => $order['totalQty'],
-            'paymentHours' => 0.3,
+            'paymentHours' => 3,
             'checkoutType'=> 4,
             'bankCode'=> "NAB",
             'allowDomestic'=> true,
@@ -198,7 +198,7 @@ class Alepay
             'returnUrl' => route('alepay.return'),
             'tokenKey' => $this->apiKey,
             'totalItem' => 1,
-            'paymentHours' => 0.16,
+            'paymentHours' => 3,
             'checkoutType'=> 4,
             'bankCode'=> "NAB",
             'allowDomestic'=> true,
