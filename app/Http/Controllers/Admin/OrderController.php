@@ -2543,9 +2543,9 @@ class OrderController extends Controller
                         $data->bonus = 0;
                     }
                 }
-               
+
                 $data->total_bonus = $data->total_affiliate_bonus +  $data->bonus;
-              
+
                 if ($data->total_bonus >= static::VAT) {
                     $data->vat = 10;
                     $data->total_bonus = $data->total_bonus - (($data->total_bonus * 10) / 100);
@@ -2770,7 +2770,7 @@ class OrderController extends Controller
                 } elseif ($data->revenue_total_sales >  $config->revenue_l1) {
                     $data->con_bonus = $config->con_bonus_l1."%";
                 } elseif ($data->revenue_total_sales >  $config->revenue_l2 && $data->revenue_total_sales < $config->revenue_l1) {
-                    $data->con_bonus = $config->con_bonus_l2."%";  
+                    $data->con_bonus = $config->con_bonus_l2."%";
                 } else {
                     if ($l1 === 0) {
                         $data->con_bonus = $config->con_bonus_l1."%";
@@ -2781,22 +2781,24 @@ class OrderController extends Controller
                     }
                 }
 
-                $bonus = 0;
-                if ($data->special_kol == 'yes') {
-                    $bonus =  ($config->con_bonus_l1 *  $data->total_amount) / 100;
-                } elseif ($data->revenue_total_sales >  $config->revenue_l1) {
-                    $bonus =  ($config->con_bonus_l1 *  $data->total_amount) / 100;
-                } elseif ($data->revenue_total_sales >  $config->revenue_l2 && $data->revenue_total_sales < $config->revenue_l1) {
-                    $bonus =  ($config->con_bonus_l2 *  $data->total_amount) / 100;
-                } else {
-                     if ($l1 === 0) {
-                        $bonus =  ($config->con_bonus_l1 *  $data->total_amount) / 100;
-                    } elseif ($l2 === 0) {
-                        $bonus =  ($config->con_bonus_l2 *  $data->total_amount) / 100;
-                    } else {
-                        $bonus = 0;
-                    }
-                }
+                $bonus = max($data->total_amount, $data->revenue_total_sales) * (float)$data->con_bonus / 100;
+
+//                if ($data->special_kol == 'yes') {
+//                    $bonus =  ($config->con_bonus_l1 *  $data->total_amount) / 100;
+//                } elseif ($data->revenue_total_sales >  $config->revenue_l1) {
+//                    $bonus =  ($config->con_bonus_l1 *  $data->total_amount) / 100;
+//                } elseif ($data->revenue_total_sales >  $config->revenue_l2 && $data->revenue_total_sales < $config->revenue_l1) {
+//                    $bonus =  ($config->con_bonus_l2 *  $data->total_amount) / 100;
+//                } else {
+//                     if ($l1 === 0) {
+//                        $bonus =  ($config->con_bonus_l1 *  $data->total_amount) / 100;
+//                    } elseif ($l2 === 0) {
+//                        $bonus =  ($config->con_bonus_l2 *  $data->total_amount) / 100;
+//                    } else {
+//                        $bonus = 0;
+//                    }
+//                }
+
                 $total_bonus += $bonus;
                 $data->bonus =  number_format($bonus, 0, ',', ',') . " đ";
 
