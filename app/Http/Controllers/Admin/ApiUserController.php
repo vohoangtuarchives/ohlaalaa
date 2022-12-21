@@ -18,6 +18,7 @@ use App\Models\KolOrderConsumerLog;
 use App\Models\MemberPackageRegister;
 use App\Models\UserConvertPointNote;
 use App\Models\UserMerchantSaleBonusNote;
+use Illuminate\Support\Facades\Log;
 use Session;
 
 class ApiUserController extends Controller
@@ -69,8 +70,8 @@ class ApiUserController extends Controller
             $point_log->shopping_point = $point_exchange;
             $point_log->daily_sp_exchange_rate = $gs->daily_sp_exchange_rate;
             $point_log->sp_vnd_exchange_rate = $gs->sp_vnd_exchange_rate;
-            $point_log->created_at = '2022-12-19 04:31:18';
-            $point_log->updated_at = '2022-12-19 04:31:18';
+            $point_log->created_at = '2022-12-20 04:31:18';
+            $point_log->updated_at = '2022-12-20 04:31:18';
             $acc->reward_point = $acc->reward_point - $point;
             $acc->shopping_point = $acc->shopping_point + $point_exchange;
             $acc->save();
@@ -79,6 +80,7 @@ class ApiUserController extends Controller
         }
         $msg = 'Convert shopping point Successfully!';
         $msg .= '- '.$count;
+        Log::debug($count);
 //        $msg =  $msg.' '.$this->send_subs_expire_notification($request);
 //        $msg =  $msg.' '.$this->send_membership_expire_notification($request);
         return response()->json($msg);
