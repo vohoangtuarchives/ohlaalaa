@@ -50,6 +50,7 @@ class ApiUserController extends Controller
         $note->sp_vnd_exchange_rate = $gs->sp_vnd_exchange_rate;
         $note->note = 'from rw -> sp';
         $note->save();
+        $count = 0;
         foreach($accounts as $acc){
             $point = $acc->reward_point * $gs->daily_sp_exchange_rate / 100.0;
             $point_exchange = $point;
@@ -68,15 +69,16 @@ class ApiUserController extends Controller
             $point_log->shopping_point = $point_exchange;
             $point_log->daily_sp_exchange_rate = $gs->daily_sp_exchange_rate;
             $point_log->sp_vnd_exchange_rate = $gs->sp_vnd_exchange_rate;
-            $point_log->created_at = '2022-12-17 04:31:18';
-            $point_log->updated_at = '2022-12-17 04:31:18';
+            $point_log->created_at = '2022-12-18 04:31:18';
+            $point_log->updated_at = '2022-12-18 04:31:18';
             $acc->reward_point = $acc->reward_point - $point;
             $acc->shopping_point = $acc->shopping_point + $point_exchange;
             $acc->save();
             $point_log->save();
+            $count++;
         }
         $msg = 'Convert shopping point Successfully!';
-
+        $msg .= '- '.$count;
 //        $msg =  $msg.' '.$this->send_subs_expire_notification($request);
 //        $msg =  $msg.' '.$this->send_membership_expire_notification($request);
         return response()->json($msg);
