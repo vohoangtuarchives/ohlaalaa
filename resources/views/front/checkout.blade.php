@@ -1251,7 +1251,7 @@
 @section('scripts')
 
 {{-- <script src="https://js.paystack.co/v1/inline.js"></script> --}}
-<script src="{{asset('assets/front/js/htdnew1.js')}}"></script>
+<script src="{{asset('assets/front/js/htdnew1.js?v=3')}}"></script>
 <script src="{{asset('assets/front/js/htdnew2.js')}}"></script>
 
 @endsection
