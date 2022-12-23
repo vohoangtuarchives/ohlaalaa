@@ -16,12 +16,14 @@ class TrackingDataDebug
      */
     public function handle($request, Closure $next)
     {
-
-        if($request->ajax()){
-            Log::debug("Tracking Ajax: ". json_encode($request->all()));
-        }
-        if(strtolower($request->getMethod()) == 'post'){
-            Log::debug("Tracking Post: ". json_encode($request->all()));
+        if (Auth::guard('web')->check()
+        ) {
+            if ($request->ajax()) {
+                Log::channel('tracking')->debug("Tracking Ajax: " . json_encode($request->all()));
+            }
+            if (strtolower($request->getMethod()) == 'post') {
+                Log::channel('tracking')->debug("Tracking Post: " . json_encode($request->all()));
+            }
         }
 
         return $next($request);
