@@ -629,6 +629,8 @@
 				@endif
 			</p>
 		</a>
+   @elseif($gt->title == 'Onepay')
+   
 	@else
 		<a class="nav-link payment gateway" data-val="" data-show="{{ ($gt->title=='Alepay' || $gt->title=='Onepay') ? 'no' : 'yes' }}" data-form=" {{ route(($gt->title=='Onepay') ? 'onepay.submit' : (($gt->title=='Alepay')?'alepay.submit':'gateway.submit'))  }}" data-href="{{ route('front.load.payment',['slug1' => 'other','slug2' => $gt->id]) }}" id="v-pills-tab{{ $gt->id }}-tab" data-toggle="pill" href="#v-pills-tab{{ $gt->id }}" role="tab" aria-controls="v-pills-tab{{ $gt->id }}" aria-selected="false">
 			<div class="icon">
