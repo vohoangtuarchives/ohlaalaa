@@ -389,7 +389,7 @@ class OrderController extends Controller
             'vendor_orders.shop_coupon_amount',
             DB::raw('vendor_orders.product_final_amount * o1.percent_discount'),
             DB::raw('(CASE WHEN o1.method = "VNPay" THEN ifnull(spc.shipping_cost, 0) '
-                    .'ELSE 0 END) AS delivery_fee'),
+                    .'ELSE ifnull(spc.shipping_cost, 0) END) AS delivery_fee'),
             DB::raw('vendor_orders.product_final_amount * percent_discount as company_product_discount'),
             DB::raw('vendor_orders.product_final_amount - vendor_orders.product_final_amount * percent_discount as final_amount'),
             'spc.shipping_cost',
@@ -861,7 +861,7 @@ class OrderController extends Controller
                 'spc.shipping_cost',
                 'spc.shipping_partner',
                 DB::raw('(CASE WHEN method = "VNPay" THEN ifnull(spc.shipping_cost, 0) '
-                    .'ELSE 0 END) AS delivery_fee'
+                    .'ELSE ifnull(spc.shipping_cost, 0) END) AS delivery_fee'
                 ),
                 DB::raw('(CASE WHEN child_cat.handling_fee > 0 THEN child_cat.handling_fee '
                     .'WHEN sub_cat.handling_fee > 0 THEN sub_cat.handling_fee '
@@ -1779,7 +1779,7 @@ class OrderController extends Controller
             'vendor_orders.shop_coupon_amount',
             DB::raw('vendor_orders.product_final_amount * o1.percent_discount'),
             DB::raw('(CASE WHEN o1.method = "VNPay" THEN ifnull(spc.shipping_cost, 0) '
-                    .'ELSE 0 END) AS delivery_fee'),
+                   .'ELSE ifnull(spc.shipping_cost, 0) END) AS delivery_fee'),
             DB::raw('vendor_orders.product_final_amount * percent_discount as company_product_discount'),
             DB::raw('vendor_orders.product_final_amount - vendor_orders.product_final_amount * percent_discount as final_amount'),
             'spc.shipping_cost',
@@ -1821,7 +1821,7 @@ class OrderController extends Controller
                 //, DB::raw('CASE WHEN payment_to_company_amount > 0 THEN payment_to_company_amount / count_shop ELSE SUM(final_amount) + delivery_fee - CASE WHEN method = "VNPay" THEN SUM(final_amount) * 0.011 + (1650.0 / COUNT(DISTINCT shop_id)) ELSE 0 END END as _22_PAYMENT_TO_TECHHUB_AMOUNT')
                 , DB::raw('payment_to_company_amount / count_shop as _22_PAYMENT_TO_TECHHUB_AMOUNT')
                 , DB::raw('SUM(amount * handling_fee / 100.0) as _23_CHARGE_FEES_VND')
-                //, DB::raw('SUM(final_amount) + SUM(company_product_discount) - SUM(amount * handling_fee / 100.0) as _24_Amount_Must_Pay_to_Merchant')
+                , DB::raw('SUM(final_amount) + SUM(company_product_discount) - SUM(amount * handling_fee / 100.0) as _24_Amount_Must_Pay_to_Merchant')
                 //, DB::raw('CASE WHEN payment_to_merchant_amount > 0 THEN payment_to_merchant_amount ELSE SUM(final_amount) + SUM(company_product_discount) - SUM(amount * handling_fee / 100.0) END as _24_Amount_Must_Pay_to_Merchant')
                 , DB::raw('payment_to_merchant_amount as _24_Amount_Must_Pay_to_Merchant')
                 , DB::raw('payment_to_merchant_date as _25_PAYMENT_to_Merchant_Date')
@@ -2800,7 +2800,7 @@ class OrderController extends Controller
 //                }
 
                 $total_bonus += $bonus;
-                $data->bonus =  number_format($bonus, 0, ',', ',') . " đ";
+                $data->bonus =  $bonus;
 
                 if ($total_bonus >= static::VAT) {
                     $data->vat = '10%';
@@ -2808,9 +2808,13 @@ class OrderController extends Controller
                 } else {
                     $data->vat = '0%';
                 }
-                $data->total_bonus =  number_format($total_bonus, 0, ',', ',') . " đ";
+                // $data->total_bonus =  number_format($total_bonus, 0, ',', ',') . " đ";
 
-                $data->revenue_total_sales =  number_format($data->revenue_total_sales, 0, ',', ',') . " đ";
+                // $data->revenue_total_sales =  number_format($data->revenue_total_sales, 0, ',', ',') . " đ";
+
+                $data->total_bonus =  $total_bonus;
+
+                $data->revenue_total_sales =  $data->revenue_total_sales;
 
             }
 

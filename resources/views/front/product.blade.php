@@ -264,7 +264,7 @@ function isMobileDevice() {
 
                             @if( $productt->user_id  != 0)
                                 @if(Auth::guard('web')->check())
-                                    <li class="addtocart">
+                                    <li class="addtocart" style="margin-left: 15px;">
                                         <product-component :id="'{{ $productt->id  }}'" :uid1="'{{ Auth::guard('web')->user()->affilate_code }}'" :user="'{{ Auth::guard('web')->user()->id }}'" :owner="'{{ $productt->user->affilate_code }}'"></product-component>
                                     </li>
                                 @endif

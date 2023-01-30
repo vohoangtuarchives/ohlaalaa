@@ -7,7 +7,7 @@ use App\Models\Admin;
 use Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\Hash;
 use Validator;
 
 

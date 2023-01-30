@@ -47,8 +47,8 @@
 															<a class="mybtn2 sm" href="{{route('user-order',$order->id)}}">
 																	{{ $langg->lang283 }}
 															</a>
-                                                            @if ($order->shipping_type == 'negotiate' && $order->status != 'declined')
-                                                                @if ($order->customer_received)
+                                                            @if (!in_array($order->status, ['declined']))
+                                                                @if ($order->customer_received || in_array($order->status, ['completed']))
                                                                 <span class='badge badge-primary'>{{ $langg->lang909 }}</span>
                                                                 @else
                                                                 <a class="mybtn2 sm order-received-btn" href="javascript:;" data-href="{{route('user-order-received',$order->id)}}">
