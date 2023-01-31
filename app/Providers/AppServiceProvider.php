@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
 
         $admin_lang = DB::table('admin_languages')->where('is_default','=',1)->first();
         App::setlocale($admin_lang->name);
-        User::chekValidation();
+        // User::chekValidation();
 
 
         if (!Session::has('df_currency')) {
