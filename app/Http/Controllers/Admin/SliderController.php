@@ -70,6 +70,10 @@ class SliderController extends Controller
         if ($file = $request->file('photo'))
          {
             $name = time().str_replace(' ', '', $file->getClientOriginalName());
+            $name = strtolower($name);
+            foreach (['(',')'] as $char){
+                $name = str_replace($char,'',$name);
+            }
             $file->move('assets/images/sliders',$name);
             $input['photo'] = $name;
         }
@@ -110,6 +114,10 @@ class SliderController extends Controller
             if ($file = $request->file('photo'))
             {
                 $name = time().str_replace(' ', '', $file->getClientOriginalName());
+                $name = strtolower($name);
+                foreach (['(',')'] as $char){
+                    $name = str_replace($char,'',$name);
+                }
                 $file->move('assets/images/sliders',$name);
                 if($data->photo != null)
                 {
