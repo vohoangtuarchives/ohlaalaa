@@ -5,6 +5,8 @@ function isMobileDevice() {
 , $_SERVER["HTTP_USER_AGENT"]);
 }
 ?>
+
+
 @if (count($prods) > 0)
     @foreach ($prods as $key => $prod)
 

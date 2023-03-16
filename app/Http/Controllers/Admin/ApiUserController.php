@@ -979,6 +979,9 @@ class ApiUserController extends Controller
                 ->orderBy('revenue.revenue_total_sales','desc')
                 ->groupBy('u.referral_id')
                 ->get();
+                if(request()->has('debug')){
+                  dump($referra,  collect($referra->keyBy('referral_id')->pluck('referral_id'))->combine($referra));
+                }
 
             $referra = collect($referra->keyBy('referral_id')->pluck('referral_id'))->combine($referra);
 

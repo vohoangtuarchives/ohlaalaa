@@ -180,7 +180,8 @@ class OrderController extends Controller
 
                 $data->l1 = $l1;
                 $data->l2 = $l2;
-
+                
+                /*
                 if ($data->special_kol == 1) {
                     $data->bonus = ($config->con_bonus_l1 *  $data->total_amount) / 100;
                 } elseif ($data->revenue_total_sales >  $config->revenue_l1) {
@@ -196,6 +197,45 @@ class OrderController extends Controller
                         $data->bonus = 0;
                     }
                 }
+                */
+                if ($data->special_kol == 'yes') {
+                    $data->con_bonus = $config->con_bonus_l1."%";
+                } elseif ($data->revenue_total_sales >  $config->revenue_l1) {
+                    $data->con_bonus = $config->con_bonus_l1."%";
+                } elseif ($data->revenue_total_sales >  $config->revenue_l2 && $data->revenue_total_sales < $config->revenue_l1) {
+                    $data->con_bonus = $config->con_bonus_l2."%";
+                } else {
+                    if ($l1 === 0) {
+                        $data->con_bonus = $config->con_bonus_l1."%";
+                    } elseif ($l2 === 0) {
+                        $data->con_bonus = $config->con_bonus_l2."%";
+                    } else {
+                        $data->con_bonus = '0%';
+                    }
+                }
+
+                if ($data->special_kol == 'yes') {
+                    $data->old_aff_con_bonus = $config->con_bonus_l1."%";
+                } elseif ($data->total_amount >  $config->revenue_l1) {
+                    $data->old_aff_con_bonus = $config->con_bonus_l1."%";
+                } elseif ($data->total_amount >  $config->revenue_l2 && $data->total_amount < $config->revenue_l1) {
+                    $data->old_aff_con_bonus = $config->con_bonus_l2."%";
+                } else {
+                    if ($l1 === 0) {
+                        $data->old_aff_con_bonus = $config->con_bonus_l1."%";
+                    } elseif ($l2 === 0) {
+                        $data->old_aff_con_bonus = $config->con_bonus_l2."%";
+                    } else {
+                        $data->old_aff_con_bonus = '0%';
+                    }
+                }
+                
+                $bonus_1 = $data->revenue_total_sales * (float)$data->con_bonus / 100;
+                
+                $bonus_2 = $data->total_amount * (float)$data->old_aff_con_bonus / 100;
+
+                $data->bonus = (float) max($bonus_1, $bonus_2);
+                
                 $data->total_bonus = $data->total_affiliate_bonus +  $data->bonus;
 
                 

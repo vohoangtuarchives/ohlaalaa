@@ -10,7 +10,7 @@ use App\Models\User;
 use Illuminate\Support\Str;
 use App\Models\Notification;
 use Illuminate\Http\Request;
-
+use Mail;
 use App\Classes\GeniusMailer;
 use App\Models\Generalsetting;
 use App\Http\Controllers\Controller;
@@ -155,7 +155,32 @@ class RegisterController extends Controller
             else
             {
                 $headers = "From: ".$gs->from_name."<".$gs->from_email.">";
-                mail($to,$subject,$msg,$headers);
+                // mail($to,$subject,$msg,$headers);
+
+                $to = $request->email;
+                $subject = 'Xác mình địa chỉ email tại Ohlaalaa.';// 'Verify your email address.';
+                $msg = "Xin chào bạn,<br> Để hoàn tất thủ tục đăng ký trên ohlaalaa.com Bạn hãy <a href=".url('user/register/verify/'.$token).">Click vào đây</a> để hoàn tất thủ tục đăng ký nhé!";
+           
+
+             $arrto = explode(',',$request->email);
+
+                foreach($arrto as $item){
+                    $email_data = [
+                        'recipient'=> $item,
+                        'to' => $request->email,
+                        'subject'=>$subject,
+                        'body'=> $msg,
+                        'link' => url('user/register/verify/'.$token)
+                    ];
+
+                 Mail::send(['html'=>'admin.email.xacnhandangky'],$email_data,function($message) use ($email_data){
+                        $message->from("info@ohlaalaa.com", "Thang Thanh Hoa")
+                        ->to($email_data['recipient'])
+                        ->subject($email_data['subject']);
+                    });
+                }
+
+
             }
             return response()->json('Thủ tục đăng ký gần hoàn tất rồi! Bạn hãy đăng nhập vào email <b style="color:orangered;">'.$to.'</b> để xác nhận email đăng ký nữa nhé!');
         }

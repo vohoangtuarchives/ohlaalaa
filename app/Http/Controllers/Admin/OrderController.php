@@ -433,7 +433,7 @@ class OrderController extends Controller
                 //, DB::raw('CASE WHEN payment_to_company_amount > 0 THEN payment_to_company_amount / count_shop ELSE SUM(final_amount) + delivery_fee - CASE WHEN method = "VNPay" THEN SUM(final_amount) * 0.011 + (1650.0 / COUNT(DISTINCT shop_id)) ELSE 0 END END as _19_Amount_Partner_Must_Pay')
                 , DB::raw('payment_to_company_amount / count_shop as _19_Amount_Partner_Must_Pay')
                 , DB::raw('payment_to_company_date as _20_PAYMENT_TO_TECHHUB_Date')
-                , DB::raw('CASE WHEN method = "VNPay" THEN method ELSE shipping_partner END as _21_PAYMENT_TO_TECHHUB_PARTNER')
+                , DB::raw('CASE WHEN method = "Cash On Delivery" THEN shipping_partner ELSE method END as _21_PAYMENT_TO_TECHHUB_PARTNER')
 
                 //, DB::raw('SUM(final_amount) + delivery_fee - CASE WHEN method = "VNPay" THEN SUM(final_amount) * 0.011 + (1650.0 / count_shop) ELSE 0 END as _22_PAYMENT_TO_TECHHUB_AMOUNT')
                 //, DB::raw('CASE WHEN payment_to_company_amount > 0 THEN payment_to_company_amount / count_shop ELSE SUM(final_amount) + delivery_fee - CASE WHEN method = "VNPay" THEN SUM(final_amount) * 0.011 + (1650.0 / COUNT(DISTINCT shop_id)) ELSE 0 END END as _22_PAYMENT_TO_TECHHUB_AMOUNT')
@@ -576,7 +576,7 @@ class OrderController extends Controller
                 , DB::raw('0 as _18_VISA_JCB_MASTERCARD_UPI_AMEX')
                 , DB::raw('payment_to_company_amount as _19_Amount_Partner_Must_Pay')
                 , DB::raw('payment_to_company_date as _20_PAYMENT_TO_TECHHUB_Date')
-                , DB::raw('CASE WHEN method = "VNPay" THEN method ELSE shipping_partner END as _21_PAYMENT_TO_TECHHUB_PARTNER')
+                , DB::raw('CASE WHEN method = "Cash On Delivery" THEN shipping_partner ELSE method END as _21_PAYMENT_TO_TECHHUB_PARTNER')
                 , DB::raw('payment_to_company_amount as _22_PAYMENT_TO_TECHHUB_AMOUNT')
                 , DB::raw('amount * handling_fee / 100.0 as _23_CHARGE_FEES_VND')
                 , DB::raw('payment_to_merchant_amount as _24_Amount_Must_Pay_to_Merchant')
@@ -893,7 +893,7 @@ class OrderController extends Controller
                 , DB::raw('SUM(final_amount) + delivery_fee - CASE WHEN method = "VNPay" THEN (SUM(final_amount) + delivery_fee) * 0.011 + (1650.0 / count_shop) ELSE 0 END as _19_Amount_Partner_Must_Pay')
                 //, DB::raw('CASE WHEN payment_to_company_amount > 0 THEN payment_to_company_amount / count_shop ELSE SUM(final_amount) + delivery_fee - CASE WHEN method = "VNPay" THEN SUM(final_amount) * 0.011 + (1650.0 / COUNT(DISTINCT shop_id)) ELSE 0 END END as _19_Amount_Partner_Must_Pay')
                 , DB::raw('"" as _20_PAYMENT_TO_TECHHUB_Date')
-                , DB::raw('CASE WHEN method = "VNPay" THEN method ELSE shipping_partner END as _21_PAYMENT_TO_TECHHUB_PARTNER')
+                , DB::raw('CASE WHEN method = "Cash On Delivery" THEN shipping_partner ELSE method END as _21_PAYMENT_TO_TECHHUB_PARTNER')
                 //, DB::raw('SUM(final_amount) + delivery_fee - CASE WHEN method = "VNPay" THEN SUM(final_amount) * 0.011 + (1650.0 / count_shop) ELSE 0 END as _22_PAYMENT_TO_TECHHUB_AMOUNT')
                 , DB::raw('CASE WHEN payment_to_company_amount > 0 THEN payment_to_company_amount / count_shop ELSE SUM(final_amount) + delivery_fee - CASE WHEN method = "VNPay" THEN (SUM(final_amount) + delivery_fee) * 0.011 + (1650.0 / COUNT(DISTINCT shop_id)) ELSE 0 END END as _22_PAYMENT_TO_TECHHUB_AMOUNT')
                 , DB::raw('SUM(amount * handling_fee / 100.0) as _23_CHARGE_FEES_VND')
@@ -1816,7 +1816,7 @@ class OrderController extends Controller
                 //, DB::raw('CASE WHEN payment_to_company_amount > 0 THEN payment_to_company_amount / count_shop ELSE SUM(final_amount) + delivery_fee - CASE WHEN method = "VNPay" THEN SUM(final_amount) * 0.011 + (1650.0 / COUNT(DISTINCT shop_id)) ELSE 0 END END as _19_Amount_Partner_Must_Pay')
                 , DB::raw('payment_to_company_amount / count_shop as _19_Amount_Partner_Must_Pay')
                 , DB::raw('payment_to_company_date as _20_PAYMENT_TO_TECHHUB_Date')
-                , DB::raw('CASE WHEN method = "VNPay" THEN method ELSE shipping_partner END as _21_PAYMENT_TO_TECHHUB_PARTNER')
+                , DB::raw('CASE WHEN method = "Cash On Delivery" THEN shipping_partner ELSE "Alepay" END as _21_PAYMENT_TO_TECHHUB_PARTNER')
                 //, DB::raw('SUM(final_amount) + delivery_fee - CASE WHEN method = "VNPay" THEN SUM(final_amount) * 0.011 + (1650.0 / count_shop) ELSE 0 END as _22_PAYMENT_TO_TECHHUB_AMOUNT')
                 //, DB::raw('CASE WHEN payment_to_company_amount > 0 THEN payment_to_company_amount / count_shop ELSE SUM(final_amount) + delivery_fee - CASE WHEN method = "VNPay" THEN SUM(final_amount) * 0.011 + (1650.0 / COUNT(DISTINCT shop_id)) ELSE 0 END END as _22_PAYMENT_TO_TECHHUB_AMOUNT')
                 , DB::raw('payment_to_company_amount / count_shop as _22_PAYMENT_TO_TECHHUB_AMOUNT')
@@ -2781,7 +2781,26 @@ class OrderController extends Controller
                     }
                 }
 
-                $bonus = max($data->total_amount, $data->revenue_total_sales) * (float)$data->con_bonus / 100;
+                if ($data->special_kol == 'yes') {
+                    $data->old_aff_con_bonus = $config->con_bonus_l1."%";
+                } elseif ($data->total_amount >  $config->revenue_l1) {
+                    $data->old_aff_con_bonus = $config->con_bonus_l1."%";
+                } elseif ($data->total_amount >  $config->revenue_l2 && $data->total_amount < $config->revenue_l1) {
+                    $data->old_aff_con_bonus = $config->con_bonus_l2."%";
+                } else {
+                    if ($l1 === 0) {
+                        $data->old_aff_con_bonus = $config->con_bonus_l1."%";
+                    } elseif ($l2 === 0) {
+                        $data->old_aff_con_bonus = $config->con_bonus_l2."%";
+                    } else {
+                        $data->old_aff_con_bonus = '0%';
+                    }
+                }
+
+                $bonus_1 = $data->revenue_total_sales * (float)$data->con_bonus / 100;
+                $bonus_2 = $data->total_amount * (float)$data->old_aff_con_bonus / 100;
+
+                $bonus = (float) max($bonus_1, $bonus_2);
 
 //                if ($data->special_kol == 'yes') {
 //                    $bonus =  ($config->con_bonus_l1 *  $data->total_amount) / 100;

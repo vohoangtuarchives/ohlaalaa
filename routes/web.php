@@ -2086,17 +2086,17 @@ Route::group(['middleware' => 'maintenance'], function ()
         ->name('front.language');
 
     // BLOG SECTION
-    Route::get('/blog', 'Front\FrontendController@blog')
+    Route::get('/trung-tam-nguon-luc', 'Front\FrontendController@blog')
         ->name('front.blog');
-    Route::get('/blog/{id}', 'Front\FrontendController@blogshow')
+    Route::get('/trung-tam-nguon-luc/{id}', 'Front\FrontendController@blogshow')
         ->name('front.blogshow');
-    Route::get('/blog/category/{slug}', 'Front\FrontendController@blogcategory')
+    Route::get('/trung-tam-nguon-luc/category/{slug}', 'Front\FrontendController@blogcategory')
         ->name('front.blogcategory');
-    Route::get('/blog/tag/{slug}', 'Front\FrontendController@blogtags')
+    Route::get('/trung-tam-nguon-luc/tag/{slug}', 'Front\FrontendController@blogtags')
         ->name('front.blogtags');
     Route::get('/blog-search', 'Front\FrontendController@blogsearch')
         ->name('front.blogsearch');
-    Route::get('/blog/archive/{slug}', 'Front\FrontendController@blogarchive')
+    Route::get('/trung-tam-nguon-luc/archive/{slug}', 'Front\FrontendController@blogarchive')
         ->name('front.blogarchive');
     // BLOG SECTION ENDS
     // BLOG SECTION

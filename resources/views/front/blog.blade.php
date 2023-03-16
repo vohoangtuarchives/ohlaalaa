@@ -118,9 +118,10 @@
       <div id="ajaxContent">
 
       <div class="row">
-
+<div class="col-md-12 col-lg-9">
+          <div class="row">
         @foreach($blogs as $blogg)
-        <div class="col-md-6 col-lg-4">
+        <div class="col-md-12 col-lg-6">
               <div class="blog-box">
                 <div class="blog-images">
                     <div class="img">
@@ -146,10 +147,29 @@
                 </div>
             </div>
         </div>
-
-
         @endforeach
+      </div>
+</div>
+<div class="col-lg-3 blog-details pt-0">
+  
+  <div class="blog-aside" style="position: sticky;top: 0;">
+     <div class="categori">
+              <h4 class="title">{{ $langg->lang42 }}</h4>
+              <span class="separator"></span>
+              <ul class="categori-list">
+                @foreach($bcats as $cat)
+                <li>
+                  <a href="{{ route('front.blogcategory',$cat->slug) }}" >
+                    <span>{{ $cat->name }}</span>
+                    <span>({{ $cat->blogs()->count() }})</span>
+                  </a>
+                </li>
+                @endforeach
 
+              </ul>
+            </div>
+  </div>
+</div>
       </div>
 
         <div class="page-center">
@@ -195,6 +215,10 @@
     // Pagination Ends
 
 </script>
-
+<style type="text/css">
+  body{
+    height: 100vh;
+  }
+</style>
 
 @endsection

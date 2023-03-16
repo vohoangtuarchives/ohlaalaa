@@ -556,22 +556,27 @@ class FrontendController extends Controller
 	public function blog(Request $request)
 	{
         $this->code_image();
+        $bcats = BlogCategory::all();
+
+        $archives= Blog::orderBy('created_at','desc')->get()->groupBy(function($item){ return $item->created_at->format('F Y'); })->take(5)->toArray();
+
 		$blogs = Blog::orderBy('created_at','desc')->paginate(9);
             if($request->ajax()){
-                return view('front.pagination.blog',compact('blogs'));
+                return view('front.pagination.blog',compact('blogs', 'bcats', 'archives'));
             }
-		return view('front.blog',compact('blogs'));
+		return view('front.blog',compact('blogs', 'bcats', 'archives'));
 	}
 
     public function blogcategory(Request $request, $slug)
     {
         $this->code_image();
         $bcat = BlogCategory::where('slug', '=', str_replace(' ', '-', $slug))->first();
+        $bcats = BlogCategory::all();
         $blogs = $bcat->blogs()->orderBy('created_at','desc')->paginate(9);
             if($request->ajax()){
                 return view('front.pagination.blog',compact('blogs'));
             }
-        return view('front.blog',compact('bcat','blogs'));
+        return view('front.blog',compact('bcat','blogs', 'bcats'));
     }
 
     public function blogtags(Request $request, $slug)
