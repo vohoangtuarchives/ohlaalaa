@@ -657,7 +657,7 @@ class CheckoutController extends Controller
             $item_name = $gs->title." Order";
             $item_number = Str::random(10);
             // $order_number = date("Ym").Str::random(10);
-            $order_number = ModuleCode::getKey(ModuleCode::O).date("YmdHms").strtoupper(Str::random(2));
+            $order_number = $this->generateOrderNumber($request->user_id);
             $order['user_id'] = $request->user_id;
             $order['cart'] = utf8_encode(bzcompress(serialize($cart), 9));
             $order['totalQty'] = $cart->totalQty;
@@ -1207,7 +1207,7 @@ class CheckoutController extends Controller
 
             $item_name = $settings->title." Order";
             $item_number = Str::random(10);
-            $order_number = ModuleCode::getKey(ModuleCode::O).date("YmdHms").strtoupper(Str::random(2));
+            $order_number = $this->generateOrderNumber($request->user_id);
             $order['user_id'] = $request->user_id;
             $order['cart'] = utf8_encode(bzcompress(serialize($cart), 9));
             $order['totalQty'] = $cart->totalQty;
@@ -1737,7 +1737,7 @@ class CheckoutController extends Controller
 
             $item_name = $settings->title." Order";
             $item_number = Str::random(10);
-            $order_number = ModuleCode::getKey(ModuleCode::O).date("YmdHms").strtoupper(Str::random(2));
+            $order_number = $this->generateOrderNumber($request->user_id);
             $order['user_id'] = $request->user_id;
             $order['cart'] = utf8_encode(bzcompress(serialize($cart), 9));
             $order['totalQty'] = $cart->totalQty;
@@ -2236,7 +2236,7 @@ class CheckoutController extends Controller
 
             $item_name = $settings->title." Order";
             $item_number = Str::random(10);
-            $order_number = ModuleCode::getKey(ModuleCode::O).date("YmdHms").strtoupper(Str::random(2));
+            $order_number = $this->generateOrderNumber($request->user_id);
             $order['user_id'] = $request->user_id;
             $order['cart'] = utf8_encode(bzcompress(serialize($cart), 9));
             $order['totalQty'] = $cart->totalQty;
@@ -2489,6 +2489,11 @@ class CheckoutController extends Controller
             $note->note = 'Checkout Gate Way bug';
             $note->save();
         }
+    }
+
+
+    protected function generateOrderNumber($userId){
+        return ModuleCode::getKey(ModuleCode::O).date("YmdHms").str_pad($userId, 6,'0',STR_PAD_LEFT);
     }
 
 }

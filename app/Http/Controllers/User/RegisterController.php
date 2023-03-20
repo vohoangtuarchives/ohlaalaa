@@ -79,8 +79,13 @@ class RegisterController extends Controller
         //--- Validation Section
 
         $rules = [
+            'name'  => 'required',
             'email'   => 'required|email|unique:users',
-            'password' => 'required|confirmed'
+            'password' => 'required|confirmed',
+            'province' => 'required',
+            'district' => 'required',
+            'ward'   => 'required',
+            'address' => 'required'
         ];
 
         $validator = Validator::make($request->all(), $rules);
