@@ -459,6 +459,9 @@
         </a>
         <ul class="collapse list-unstyled" id="menu" data-parent="#accordion">
             <li>
+                <a href="{{ route('admin-faq-category-index') }}"><span>{{ __('FAQ Category') }}</span></a>
+            </li>
+            <li>
                 <a href="{{ route('admin-faq-index') }}"><span>{{ __('FAQ Page') }}</span></a>
             </li>
             <li>

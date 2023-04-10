@@ -36,7 +36,21 @@
                         @include('includes.admin.form-both') 
                       <form id="geniusform" action="{{route('admin-faq-create')}}" method="POST" enctype="multipart/form-data">
                         {{csrf_field()}}
-
+                        <div class="row">
+                          <div class="col-lg-4">
+                            <div class="left-area">
+                              <h4 class="heading">{{ __('Category') }}*</h4>
+                            </div>
+                          </div>
+                          <div class="col-lg-7">
+                            <select name="faq_category_id" required="">
+                              <option value="">{{ __('Select Category') }}</option>
+                              @foreach($cats as $cat)
+                                <option value="{{ $cat->id }}">{{ $cat->name }}</option>
+                              @endforeach
+                            </select>
+                          </div>
+                        </div>
                         <div class="row">
                           <div class="col-lg-4">
                             <div class="left-area">

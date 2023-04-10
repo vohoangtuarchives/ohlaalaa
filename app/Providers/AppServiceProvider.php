@@ -58,7 +58,7 @@ class AppServiceProvider extends ServiceProvider
             }));
 
             $settings->with('categories', cache()->remember('categories', now()->addDay(), function () {
-                return Category::with('subs')->where('status','=',1)->get();
+                return Category::with('subs')->get();
             }));
 
             $htd_pho = new HTDPhoto;
@@ -99,6 +99,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        if (env('APP_DEBUG')) {
+            $this->app->register(\Barryvdh\Debugbar\ServiceProvider::class);
+        }
+
         Collection::macro('paginate', function($perPage, $total = null, $page = null, $pageName = 'page') {
             $page = $page ?: LengthAwarePaginator::resolveCurrentPage($pageName);
             return new LengthAwarePaginator(

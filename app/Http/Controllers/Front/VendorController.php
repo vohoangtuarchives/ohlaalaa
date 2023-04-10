@@ -30,8 +30,14 @@ class VendorController extends Controller
         $minprice = $request->min;
         $maxprice = $request->max;
         $sort = $request->sort;
-        $string = str_replace('-',' ', $category);
-        $vendor = User::where('shop_name','=',$string)->firstOrFail();
+
+        $vendor = User::where('shop_url','=',strtolower($category))->first();
+
+        if(!isset($vendor->id)){
+            $string = str_replace('-',' ', $category);
+            $vendor = User::where('shop_name','=',$string)->firstOrFail();
+        }
+
         $data['vendor'] = $vendor;
         $data['services'] = DB::table('services')->where('user_id','=',$vendor->id)->get();
         $data['shop_name'] = $category;

@@ -43,6 +43,7 @@
 														<tr>
 									                        <th width="30%">{{ __('Faq Title') }}</th>
 									                        <th width="50%">{{ __('Faq Details') }}</th>
+															<th width="20%">{{ __('Faq Category') }}</th>
 									                        <th>{{ __('Options') }}</th>
 														</tr>
 													</thead>
@@ -131,6 +132,7 @@
                columns: [
                         { data: 'title', name: 'title' },
                         { data: 'details', name: 'details' },
+				   		{ data: 'category', name: 'category' },
             			{ data: 'action', searchable: false, orderable: false }
 
                      ],

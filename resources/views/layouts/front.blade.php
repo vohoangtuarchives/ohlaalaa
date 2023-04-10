@@ -12,7 +12,7 @@
 		<title>{{$gs->title}}</title>
     @elseif(isset($blog->meta_tag) && isset($blog->meta_description))
         <meta name="keywords" content="{{ $blog->meta_tag }}">
-        <meta name="description" content="{{ $blog->meta_description }}">
+        <meta name="description" content="{{ $blog->meta_description ?? '' }}">
 		<title>{{$gs->title}}</title>
     @elseif(isset($productt))
 		<meta name="keywords" content="{{ !empty($productt->meta_tag) ? implode(',', $productt->meta_tag ): '' }}">
@@ -25,7 +25,7 @@
     	<title>{{substr($productt->name, 0,11)."-"}}{{$gs->title}}</title>
     @else
 	    <meta name="keywords" content="{{ $seo->meta_keys }}">
-		<meta name="description" content="{{ $seo->meta_description }}">
+		<meta name="description" content="{{ $seo->meta_description ?? '' }}">
 	    <meta name="author" content="GeniusOcean">
 		<title>{{$gs->title}}</title>
     @endif
@@ -51,7 +51,7 @@
 	<link rel="stylesheet" href="{{asset('assets/front/css/htd-custom.css')}}">
 
 	<!-- stylesheet -->
-    <link rel="stylesheet" href="{{asset('assets/front/css/all.css')}}">
+    <link rel="stylesheet" href="{{asset('resources/front/css/all.css')}}">
 
     <!--Updated CSS-->
  	<link rel="stylesheet" href="{{ asset('assets/front/css/styles.php?color='.str_replace('#','',$gs->colors).'&amp;'.'header_color='.str_replace('#','',$gs->header_color).'&amp;'.'footer_color='.str_replace('#','',$gs->footer_color).'&amp;'.'copyright_color='.str_replace('#','',$gs->copyright_color).'&amp;'.'menu_color='.str_replace('#','',$gs->menu_color).'&amp;'.'menu_hover_color='.str_replace('#','',$gs->menu_hover_color)) }}">
@@ -404,13 +404,13 @@
 
 									<ul class="{{ $category->subs()->withCount('childs')->get()->sum('childs_count') > 0 ? 'categories_mega_menu' : 'categories_mega_menu column_1' }}">
 
-                                        @foreach($category->subs()->whereStatus(1)->get() as $subcat)
+                                        @foreach($category->subs as $subcat)
 											<li class="col-md-4">
 												<a href="{{ route('front.subcat',['slug1' => $category->slug, 'slug2' => $subcat->slug]) }}">{{$subcat->name}}</a>
 												@if(count($subcat->childs) > 0)
 													<div class="categorie_sub_menu">
 														<ul>
-															@foreach($subcat->childs()->whereStatus(1)->get() as $childcat)
+															@foreach($subcat->childs()->get() as $childcat)
 															<li><a href="{{ route('front.childcat',['slug1' => $category->slug, 'slug2' => $subcat->slug, 'slug3' => $childcat->slug]) }}">{{$childcat->name}}</a></li>
 															@endforeach
 														</ul>
@@ -445,21 +445,23 @@
 							<button class="toggle-bar"><span class="fa fa-bars"></span></button>
 						</div>
 						<ul class="menu">
+							@foreach(DB::table('pages')->where('header','=',1)->get() as $data)
+								<li><a href="{{ route('front.page',$data->slug) }}">{{ $data->title }}</a></li>
+							@endforeach
+							<li class="active" ><a  href="{{ route('front.blog') }}">Trung Tâm Nguồn Lực</a></li>
                             <li><a href="{{ route('front.preferred') }}">Shop yêu thích</a></li>
                             {{-- Preferred Shop --}}
-                            <li><a href="{{ route('front.coupon') }}">Mã Giảm Giá</a></li>
+                            <li><a href="{{ route('front.coupon') }}">E-voucher SP</a></li>
                             {{-- Coupon --}}
 							@if($gs->is_home == 1)
 							<li><a href="{{ route('front.index') }}">{{ $langg->lang17 }}</a></li>
 							@endif
-							<li class="active" ><a  href="{{ route('front.blog') }}">Trung Tâm Nguồn Lực</a></li>
+								<li><a href="{{ route('front.daisuketnoi') }}">Đại Sứ Kết Nối</a></li>
 							@if($gs->is_faq == 1)
 							<li><a href="{{ route('front.faq') }}">{{ $langg->lang19 }}</a></li>
                             {{-- {{ $langg->lang19 }} --}}
 							@endif
-							@foreach(DB::table('pages')->where('header','=',1)->get() as $data)
-								<li><a href="{{ route('front.page',$data->slug) }}">{{ $data->title }}</a></li>
-							@endforeach
+
 							@if($gs->is_contact == 1)
 							<li><a href="{{ route('front.contact') }}">{{ $langg->lang20 }}</a></li>
 							@endif

@@ -1,5 +1,3 @@
-
-
 <div class="col-lg-4 col-md-4 col-6 remove-padding">
     <div class="item">
         @if (!isMobileDevice())

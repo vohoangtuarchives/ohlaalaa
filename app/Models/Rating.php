@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Cache;
 
 class Rating extends Model
 {
@@ -26,14 +28,17 @@ class Rating extends Model
 		});
     }
     public static function ratings($productid){
-        $stars = Rating::where('product_id',$productid)->avg('rating');
-        $ratings = number_format((float)$stars, 1, '.', '')*20;
-        return $ratings;
+        return Cache::remember("cache_ratings_product_".$productid, Carbon::now()->addDay(), function() use($productid){
+            $stars = Rating::where('product_id',$productid)->avg('rating');
+            $ratings = number_format((float)$stars, 1, '.', '')*20;
+            return $ratings;
+        });
     }
     public static function rating($productid){
-        $stars = Rating::where('product_id',$productid)->avg('rating');
-        $stars = number_format((float)$stars, 1, '.', '');
-        return $stars;
+        return Cache::remember("cache_rating_product_".$productid, Carbon::now()->addDay(), function() use($productid){
+            $stars = Rating::where('product_id',$productid)->avg('rating');
+            return number_format((float)$stars, 1, '.', '');
+        });
     }
 
 }

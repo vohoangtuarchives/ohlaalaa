@@ -27,18 +27,35 @@
 
 
   <!-- faq Area Start -->
-  <section class="faq-section">
+  <section class="faq-section blog-details">
     <div class="container">
       <div class="row justify-content-center">
-        <div class="col-lg-8 col-md-10">
+        <div class="col-md-9">
           <div id="accordion">
-
-            @foreach($faqs as $fq)
-            <h3 class="heading">{{ $fq->title }}</h3>
-            <div class="content">
-                <p>{!! $fq->details !!}</p>
+              @foreach($faqs as $fq)
+              <h3 class="heading">{{ $fq->title }}</h3>
+              <div class="content">
+                  <p>{!! $fq->details !!}</p>
+              </div>
+              @endforeach
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="blog-aside" style="position: sticky;top: 0;">
+            <div class="categori">
+              <h4 class="title">{{ $langg->lang42 }}</h4>
+              <span class="separator"></span>
+              <ul class="categori-list">
+                @foreach($bcats as $cat)
+                  <li>
+                    <a href="{{ route('front.faqcategory',$cat->slug) }}" >
+                      <span>{{ $cat->name }}</span>
+                      <span>({{ $cat->faqs()->count() }})</span>
+                    </a>
+                  </li>
+                @endforeach
+              </ul>
             </div>
-            @endforeach
           </div>
         </div>
       </div>

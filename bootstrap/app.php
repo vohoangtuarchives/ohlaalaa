@@ -14,9 +14,9 @@
 $app = new Illuminate\Foundation\Application(
     dirname(__DIR__)
 );
-$app->bind('path.public', function() {
-   return base_path() . '/../';
-});
+//$app->bind('path.public', function() {
+//   return base_path() . '/../';
+//});
 
 /*
 |--------------------------------------------------------------------------
@@ -44,7 +44,7 @@ $app->singleton(
     App\Exceptions\Handler::class
 );
 
-$app->useEnvironmentPath(realpath(__DIR__.'/../vendor/markury/src/'));
+//$app->useEnvironmentPath(realpath(__DIR__.'/../vendor/markury/src/'));
 
 /*
 |--------------------------------------------------------------------------

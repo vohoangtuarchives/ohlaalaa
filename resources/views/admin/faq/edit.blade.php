@@ -36,7 +36,21 @@
                       @include('includes.admin.form-both') 
                       <form id="geniusform" action="{{route('admin-faq-update',$data->id)}}" method="POST">
                         {{csrf_field()}}
-
+                        <div class="row">
+                          <div class="col-lg-4">
+                            <div class="left-area">
+                              <h4 class="heading">{{ __('Category') }}*</h4>
+                            </div>
+                          </div>
+                          <div class="col-lg-7">
+                            <select name="faq_category_id" required="">
+                              <option value="">{{ __('Select Category') }}</option>
+                              @foreach($cats as $cat)
+                                <option value="{{ $cat->id }}" {{ $data->faq_category_id == $cat->id ? 'selected' :'' }}>{{ $cat->name }}</option>
+                              @endforeach
+                            </select>
+                          </div>
+                        </div>
                         <div class="row">
                           <div class="col-lg-4">
                             <div class="left-area">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Front;
 
+use App\Models\FaqCategory;
 use Carbon\Carbon;
 use App\Models\Blog;
 use App\Models\User;
@@ -37,51 +38,51 @@ class FrontendController extends Controller
         //return redirect()->route('front.index');
         //$this->auth_guests();
 
-        if(isset($_SERVER['HTTP_REFERER'])){
-            $referral = parse_url($_SERVER['HTTP_REFERER'], PHP_URL_HOST);
-            if ($referral != $_SERVER['SERVER_NAME']){
-
-                $brwsr = Counter::where('type','browser')->where('referral',$this->getOS());
-                if($brwsr->count() > 0){
-                    $brwsr = $brwsr->first();
-                    $tbrwsr['total_count']= $brwsr->total_count + 1;
-                    $brwsr->update($tbrwsr);
-                }else{
-                    $newbrws = new Counter();
-                    $newbrws['referral']= $this->getOS();
-                    $newbrws['type']= "browser";
-                    $newbrws['total_count']= 1;
-                    $newbrws->save();
-                }
-
-                $count = Counter::where('referral',$referral);
-                if($count->count() > 0){
-                    $counts = $count->first();
-                    $tcount['total_count']= $counts->total_count + 1;
-                    $counts->update($tcount);
-                }else{
-                    $newcount = new Counter();
-                    $newcount['referral']= $referral;
-                    $newcount['total_count']= 1;
-                    $newcount->save();
-                }
-            }
-        }else{
-            $brwsr = Counter::where('type','browser')->where('referral',$this->getOS());
-            if($brwsr->count() > 0){
-                $brwsr = $brwsr->first();
-                $tbrwsr['total_count']= $brwsr->total_count + 1;
-
-                $brwsr->update($tbrwsr);
-                //dd('handled! else if update');
-            }else{
-                $newbrws = new Counter();
-                $newbrws['referral']= $this->getOS();
-                $newbrws['type']= "browser";
-                $newbrws['total_count']= 1;
-                $newbrws->save();
-            }
-        }
+//        if(isset($_SERVER['HTTP_REFERER'])){
+//            $referral = parse_url($_SERVER['HTTP_REFERER'], PHP_URL_HOST);
+//            if ($referral != $_SERVER['SERVER_NAME']){
+//
+//                $brwsr = Counter::where('type','browser')->where('referral',$this->getOS());
+//                if($brwsr->count() > 0){
+//                    $brwsr = $brwsr->first();
+//                    $tbrwsr['total_count']= $brwsr->total_count + 1;
+//                    $brwsr->update($tbrwsr);
+//                }else{
+//                    $newbrws = new Counter();
+//                    $newbrws['referral']= $this->getOS();
+//                    $newbrws['type']= "browser";
+//                    $newbrws['total_count']= 1;
+//                    $newbrws->save();
+//                }
+//
+//                $count = Counter::where('referral',$referral);
+//                if($count->count() > 0){
+//                    $counts = $count->first();
+//                    $tcount['total_count']= $counts->total_count + 1;
+//                    $counts->update($tcount);
+//                }else{
+//                    $newcount = new Counter();
+//                    $newcount['referral']= $referral;
+//                    $newcount['total_count']= 1;
+//                    $newcount->save();
+//                }
+//            }
+//        }else{
+//            $brwsr = Counter::where('type','browser')->where('referral',$this->getOS());
+//            if($brwsr->count() > 0){
+//                $brwsr = $brwsr->first();
+//                $tbrwsr['total_count']= $brwsr->total_count + 1;
+//
+//                $brwsr->update($tbrwsr);
+//                //dd('handled! else if update');
+//            }else{
+//                $newbrws = new Counter();
+//                $newbrws['referral']= $this->getOS();
+//                $newbrws['type']= "browser";
+//                $newbrws['total_count']= 1;
+//                $newbrws->save();
+//            }
+//        }
     }
 
     function getOS() {
@@ -552,7 +553,9 @@ class FrontendController extends Controller
 
 
 // -------------------------------- BLOG SECTION ----------------------------------------
-
+    public function daisuketnoi(Request $request){
+        
+    }
 	public function blog(Request $request)
 	{
         $this->code_image();
@@ -654,31 +657,59 @@ public function preferred(Request $request)
 
 public function coupon(Request $request)
 {
-    $this->code_image();
-    $now = Carbon::now()->format('Y-m-d');
-    $coupons_vendor = CouponVendor::where(function ($query) {
-            $query->where('times', '>', 0)
-                ->orWhereNull('times');
-        })
-        ->where('status', '=', 1)
-        ->where('start_date', '<=', $now)
-        ->where('end_date', '>=', $now)
-        ->select('id', 'vendor_id', 'code', 'type', 'price', 'times', 'used', 'status', 'start_date', 'end_date', 'created_at');
-    $coupons_company = Coupon::where(function ($query) {
-            $query->where('times', '>', 0)
-                ->orWhereNull('times');
-        })
-        ->where('status', '=', 1)
-        ->where('start_date', '<=', $now)
-        ->where('end_date', '>=', $now)
-        ->select(DB::raw('-id as id'), DB::raw('0 as vendor_id'), 'code', 'type', 'price', 'times', 'used', 'status', 'start_date', 'end_date', 'created_at');
+//    $this->code_image();
+//    $now = Carbon::now()->format('Y-m-d');
+//    $coupons_vendor = CouponVendor::where(function ($query) {
+//            $query->where('times', '>', 0)
+//                ->orWhereNull('times');
+//        })
+//        ->where('status', '=', 1)
+//        ->where('start_date', '<=', $now)
+//        ->where('end_date', '>=', $now)
+//        ->select('id', 'vendor_id', 'code', 'type', 'price', 'times', 'used', 'status', 'start_date', 'end_date', 'created_at');
+//    $coupons_company = Coupon::where(function ($query) {
+//            $query->where('times', '>', 0)
+//                ->orWhereNull('times');
+//        })
+//        ->where('status', '=', 1)
+//        ->where('start_date', '<=', $now)
+//        ->where('end_date', '>=', $now)
+//        ->select(DB::raw('-id as id'), DB::raw('0 as vendor_id'), 'code', 'type', 'price', 'times', 'used', 'status', 'start_date', 'end_date', 'created_at');
+//
+//    $coupons = $coupons_vendor->union($coupons_company)->orderBy('created_at','desc')->paginate(9);
+//    $curr = Currency::where('is_default','=',1)->first();
 
-    $coupons = $coupons_vendor->union($coupons_company)->orderBy('created_at','desc')->paginate(9);
+    $selectable = ['id','user_id','name','slug','features','colors','thumbnail','price','previous_price','attributes','size','size_price','discount_date','weight',
+        'price_shopping_point',
+        'percent_price',
+        'percent_shopping_point'];
+
+    $products = Product::with(['user' =>function($user){
+        return $user->where('is_vendor', '!=', 2);
+    }])
+        ->where('status','=',1)
+        ->select($selectable)
+        ->orderBy("percent_shopping_point", 'desc')
+        ->where('stock', '!=', 0)
+        ->where('user_id', '!=', 0)
+
+        ->paginate(30)
+//        ->reject(function($item){
+//            if($item->user_id != 0){
+//                if($item->user->is_vendor != 2){
+//                    return true;
+//                }
+//            }
+//            return false;
+//        })
+    ;
+
     $curr = Currency::where('is_default','=',1)->first();
     if($request->ajax()){
-        return view('front.pagination.coupon',compact('coupons', 'curr'));
+        return view('front.pagination.coupon',compact('products', 'curr'));
     }
-    return view('front.coupon',compact('coupons', 'curr'));
+
+    return view('front.coupon',compact('products', 'curr'));
 }
 
 
@@ -695,8 +726,21 @@ public function coupon(Request $request)
             return redirect()->back();
         }
         $faqs =  DB::table('faqs')->orderBy('id','desc')->get();
-		return view('front.faq',compact('faqs'));
+        $bcats = FaqCategory::all();
+		return view('front.faq',compact('faqs', 'bcats'));
 	}
+
+    public function faqCategory(Request $request, $slug)
+    {
+        $this->code_image();
+        $bcat = FaqCategory::where('slug', '=', str_replace(' ', '-', $slug))->first();
+        $bcats = FaqCategory::with('faqs')->get();
+        $faqs = $bcat->faqs()->orderBy('id','asc')->paginate(9);
+        if($request->ajax()){
+            return view('front.pagination.blog',compact('faqs'));
+        }
+        return view('front.faq',compact('bcat','faqs', 'bcats'));
+    }
 // -------------------------------- FAQ SECTION ENDS----------------------------------------
 
 // -------------------------------- PAGE SECTION ----------------------------------------

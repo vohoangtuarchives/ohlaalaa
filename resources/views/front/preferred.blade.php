@@ -37,7 +37,7 @@
         @endphp
       <div class="row">
         @foreach($preferrers as $pre)
-        <div class="col-md-6 col-lg-4">
+        <div class="col-md-12 col-lg-6">
               <div class="blog-box">
                 <div class="blog-images">
                     <div class="img">

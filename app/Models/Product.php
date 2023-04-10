@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Product extends Model
 {
     use SoftDeletes;
+
     protected $fillable = ['user_id',
         'category_id',
         'product_type',
@@ -147,6 +148,8 @@ class Product extends Model
 			}
 		});
     }
+
+
 
     public function reports()
     {

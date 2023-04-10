@@ -13,7 +13,7 @@ class CompareController extends Controller
 
     public function compare()
     {
-        $this->code_image();
+//        $this->code_image();
         if (!Session::has('compare')) {
             return view('front.compare');
         }

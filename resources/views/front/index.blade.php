@@ -475,15 +475,12 @@
 												</blockquote>
 											</div>
 										@endforeach
-
-
 									</div>
 								</div>
 							</div>
 						</div>
 						<div class="col-lg-6">
 							@foreach(DB::table('blogs')->orderby('views','desc')->take(2)->get() as $blogg)
-
 								<div class="blog-box">
 									<div class="blog-images">
 										<div class="img">

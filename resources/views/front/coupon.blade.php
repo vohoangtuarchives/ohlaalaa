@@ -1,4 +1,11 @@
 @extends('layouts.front')
+@php
+    function isMobileDevice() {
+        return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo
+    |fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i"
+    , $_SERVER["HTTP_USER_AGENT"]);
+    }
+@endphp
 @section('content')
 
 
@@ -116,73 +123,12 @@
 
       <div class="row">
 
-        @foreach($coupons as $couponn)
-        <div class="col-md-6 col-lg-4">
-              <div class="blog-box">
-                <h4 class="blog-title" style="color: crimson">
-                    Code: {{mb_strlen($couponn->code,'utf-8') > 50 ? mb_substr($couponn->code,0,50,'utf-8')."...":$couponn->code}}
-                    <input type="hidden" name="code" id="code-copy{{ $couponn->id }}" value="{{ $couponn->code }}">
-                </h4>
-                <div class="blog-images">
-                    <div class="img">
-                    {{-- <img src="{{ $blogg->photo ? asset('assets/images/blogs/'.$blogg->photo):asset('assets/images/noimage.png') }}" class="img-fluid" alt=""> --}}
-                    <img src="{{ asset('assets/images/coupons/coupon_default1.jpg') }}" class="img-fluid" alt="">
-                    <div class="date d-flex justify-content-center">
-                      <div class="box align-self-center">
-                        <p>{{date('d', strtotime($couponn->start_date))}}</p>
-                        <p>{{date('M', strtotime($couponn->start_date))}}</p>
-                      </div>
-                    </div>
-
-                    <div class="date1 d-flex justify-content-center">
-                        <div class="box align-self-center">
-                          <p>{{date('d', strtotime($couponn->end_date))}}</p>
-                          <p>{{date('M', strtotime($couponn->end_date))}}</p>
-                        </div>
-                      </div>
-
-                      <div class="price d-flex justify-content-center">
-                        <div class="box align-self-center">
-                          <p>{{ $couponn->type == 0 ? $couponn->price.'%' : number_format($couponn->price).$curr->sign }}</p>
-                        </div>
-                      </div>
-
-                    </div>
-                </div>
-                @if ($couponn->vendor_id > 0)
-                    @php
-                    $vendor = DB::table('users')->where('id',$couponn->vendor_id)->first();
-                    @endphp
-                    <div class="details">
-                        <a href='{{ route('front.vendor',str_replace(' ', '-', $vendor->shop_name)) }}'>
-                        <h4 class="blog-title">
-
-                            {{mb_strlen($vendor->name,'utf-8') > 50 ? mb_substr($vendor->name,0,50,'utf-8')."...":$vendor->name}}
-                        </h4>
-                        </a>
-                    <p class="blog-text">
-                    </p>
-                    <a class="copy-btn coupon-front-btn" data-val="{{ $couponn->id }}" href="javascript:;">Copy</a>
-                    <a href="{{ route('front.vendor',str_replace(' ', '-', $vendor->shop_name)) }}" class="view-stor coupon-front-btn">{{ $langg->lang249 }}</a>
-                    </div>
-                @else
-                    <div class="details">
-                    <p class="blog-text">
-                    </p>
-                    <a class="copy-btn coupon-front-btn" data-val="{{ $couponn->id }}" href="javascript:;">Copy</a>
-                    </div>
-                @endif
-
-            </div>
-        </div>
-
-
+        @foreach($products as $prod)
+            @include("includes.product.home-product")
         @endforeach
-
       </div>
-
         <div class="page-center">
-            {!! $coupons->links() !!}
+            {!! $products->links() !!}
         </div>
 </div>
 
@@ -197,40 +143,5 @@
 
 
 @section('scripts')
-
-<script type="text/javascript">
-
-
-    // Pagination Starts
-
-    $(document).on('click', '.pagination li', function (event) {
-      event.preventDefault();
-      if ($(this).find('a').attr('href') != '#' && $(this).find('a').attr('href')) {
-        $('#preloader').show();
-        $('#ajaxContent').load($(this).find('a').attr('href'), function (response, status, xhr) {
-          if (status == "success") {
-            $("html,body").animate({
-              scrollTop: 0
-            }, 1);
-            $('#preloader').fadeOut();
-          }
-        });
-      }
-    });
-
-    // Pagination Ends
-
-    $(document).on('click', '.copy-btn', function (event) {
-      event.preventDefault();
-        var $temp = $("<input>");
-        $("body").append($temp);
-        var t = '#code-copy'+$(this).data('val');
-        $temp.val($('#code-copy'+$(this).data('val')).val()).select();
-        document.execCommand("copy");
-        $temp.remove();
-        toastr.success("Coupon Copied !!");
-    });
-</script>
-
 
 @endsection

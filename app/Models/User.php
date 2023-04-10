@@ -37,6 +37,7 @@ class User extends Authenticatable
         , 'comet_note'
         , 'vendor_from'
         , 'kol'
+        , 'shop_url'
     ];
 
 
@@ -676,5 +677,13 @@ class User extends Authenticatable
     public function showName() {
         $name = mb_strlen($this->shop_name,'utf-8') > 55 ? mb_substr($this->shop_name,0,55,'utf-8').'...' : $this->shop_name;
         return $name;
+    }
+
+    protected static function booted()
+    {
+        static::saved(function ($user) {
+            $user->shop_url = Str::slug($this->shop_name, '-');
+            $user->save();
+        });
     }
 }

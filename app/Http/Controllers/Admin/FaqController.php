@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use App\Models\FaqCategory;
 use Datatables;
 use App\Models\Faq;
 use Illuminate\Http\Request;
@@ -16,13 +17,16 @@ class FaqController extends Controller
     //*** JSON Request
     public function datatables()
     {
-         $datas = Faq::orderBy('id','desc')->get();
+         $datas = Faq::with("category")->orderBy('id','desc')->get();
          //--- Integrating This Collection Into Datatables
          return Datatables::of($datas)
                             ->editColumn('details', function(Faq $data) {
                                 $details = mb_strlen(strip_tags($data->details),'utf-8') > 250 ? mb_substr(strip_tags($data->details),0,250,'utf-8').'...' : strip_tags($data->details);
                                 return  $details;
                             })
+                             ->addColumn('category', function(Faq $data) {
+                                 return $data->category->name ?? '';
+                             })
                             ->addColumn('action', function(Faq $data) {
                                 return '<div class="action-list"><a href="' . route('admin-faq-edit',$data->id) . '"> <i class="fas fa-edit"></i>Edit</a><a href="javascript:;" data-href="' . route('admin-faq-delete',$data->id) . '" data-toggle="modal" data-target="#confirm-delete" class="delete"><i class="fas fa-trash-alt"></i></a></div>';
                             })
@@ -39,7 +43,8 @@ class FaqController extends Controller
     //*** GET Request
     public function create()
     {
-        return view('admin.faq.create');
+        $cats = FaqCategory::all();
+        return view('admin.faq.create', compact('cats'));
     }
 
     //*** POST Request
@@ -65,7 +70,8 @@ class FaqController extends Controller
     public function edit($id)
     {
         $data = Faq::findOrFail($id);
-        return view('admin.faq.edit',compact('data'));
+        $cats = FaqCategory::all();
+        return view('admin.faq.edit',compact('data', 'cats'));
     }
 
     //*** POST Request
