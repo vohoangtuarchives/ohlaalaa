@@ -688,6 +688,7 @@ public function coupon(Request $request)
         return $user->where('is_vendor', '!=', 2);
     }])
         ->where('status','=',1)
+        ->where('percent_shopping_point','<=',70)
         ->select($selectable)
         ->orderBy("percent_shopping_point", 'desc')
         ->where('stock', '!=', 0)
