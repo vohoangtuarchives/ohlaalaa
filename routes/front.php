@@ -1,7 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
-
+use App\Http\Controllers\Front\VendorController;
 Route::get('/', 'Front\FrontendController@index')
     ->name('front.index');
 Route::get('/extras', 'Front\FrontendController@extraIndex')
