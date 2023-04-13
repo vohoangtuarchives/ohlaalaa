@@ -14,9 +14,10 @@
 $app = new Illuminate\Foundation\Application(
     dirname(__DIR__)
 );
-//$app->bind('path.public', function() {
-//   return base_path() . '/../';
-//});
+
+$app->bind('path.public', function() {
+   return base_path() . '/../';
+});
 
 /*
 |--------------------------------------------------------------------------
