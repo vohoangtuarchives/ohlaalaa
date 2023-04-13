@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
+
 Route::get('/', 'Front\FrontendController@index')
     ->name('front.index');
 Route::get('/extras', 'Front\FrontendController@extraIndex')

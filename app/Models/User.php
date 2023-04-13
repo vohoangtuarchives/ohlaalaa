@@ -679,11 +679,5 @@ class User extends Authenticatable
         return $name;
     }
 
-    protected static function booted()
-    {
-        static::saved(function ($user) {
-            $user->shop_url = Str::slug($this->shop_name, '-');
-            $user->save();
-        });
-    }
+
 }
