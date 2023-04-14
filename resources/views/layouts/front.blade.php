@@ -189,7 +189,7 @@
                         			@if($gs->reg_vendor == 1)
 										<li>
                         				@if(Auth::check())
-	                        				@if(Auth::guard('web')->user()->is_vendor == 2)
+	                        				@if(Auth::guard('web')->user() && Auth::guard('web')->user()->is_vendor == 2)
 	                        					<a href="{{ route('vendor-dashboard') }}" class="sell-btn">{{ $langg->lang220 }}</a>
 	                        				@else
 	                        					<a href="{{ route('user-package') }}" class="sell-btn">{{ $langg->lang220 }}</a>
