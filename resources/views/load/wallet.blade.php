@@ -1,4 +1,4 @@
-									@if(Auth::check())
+									@if(Auth::check() && Auth::user())
 										<div class="dropdownmenu-wrapper">
                                             <div class="membership-title">
                                                 <p class="sub-heading">
