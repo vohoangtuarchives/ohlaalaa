@@ -19,7 +19,6 @@
 		<!-- Hero Area Start -->
 		<section class="hero-area">
 			@if($ps->slider == 1)
-
 				@if(count($sliders))
 					<div class="hero-area-slider">
 						<div class="slide-progress"></div>
@@ -53,9 +52,7 @@
 						</div>
 					</div>
 				@endif
-
 			@endif
-
 		</section>
 		<!-- Hero Area End -->
 	@endif
@@ -159,7 +156,7 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-lg-9">
+						<div class="col-lg-12">
 							<div class="row">
 								{{-- san pham ban chay nhat --}}
 								@foreach($best_products as $prod)
@@ -167,16 +164,16 @@
 								@endforeach
 							</div>
 						</div>
-						<div class="col-lg-3 remove-padding d-none d-lg-block">
-							<div class="aside">
-								<a class="banner-effect mb-10" href="{{ $ps->best_seller_banner_link }}">
-									<img src="{{asset('assets/images/'.$ps->best_seller_banner)}}" alt="">
-								</a>
-								<a class="banner-effect" href="{{ $ps->best_seller_banner_link1 }}">
-									<img src="{{asset('assets/images/'.$ps->best_seller_banner1)}}" alt="">
-								</a>
-							</div>
-						</div>
+{{--						<div class="col-lg-3 remove-padding d-none d-lg-block">--}}
+{{--							<div class="aside">--}}
+{{--								<a class="banner-effect mb-10" href="{{ $ps->best_seller_banner_link }}">--}}
+{{--									<img src="{{asset('assets/images/'.$ps->best_seller_banner)}}" alt="">--}}
+{{--								</a>--}}
+{{--								<a class="banner-effect" href="{{ $ps->best_seller_banner_link1 }}">--}}
+{{--									<img src="{{asset('assets/images/'.$ps->best_seller_banner1)}}" alt="">--}}
+{{--								</a>--}}
+{{--							</div>--}}
+{{--						</div>--}}
 					</div>
 				</div>
 			</section>
@@ -333,7 +330,7 @@
 
 		@if($ps->hot_sale == 1)
 			<!-- hot-and-new-item Area Start -->
-			<section class="hot-and-new-item">
+			<section class="hot-and-new-item d-none">
 				<div class="container">
 					<div class="row">
 						<div class="col-lg-12">
