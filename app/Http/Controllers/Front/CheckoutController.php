@@ -2493,7 +2493,7 @@ class CheckoutController extends Controller
 
 
     protected function generateOrderNumber($userId){
-        return ModuleCode::getKey(ModuleCode::O).date("YmdHms").str_pad($userId, 6,'0',STR_PAD_LEFT);
+        return ModuleCode::getKey(ModuleCode::O).str_pad($userId, 6,'0',STR_PAD_LEFT).date("YmdHms");
     }
 
 }
