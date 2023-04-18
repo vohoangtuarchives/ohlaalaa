@@ -693,6 +693,7 @@ public function coupon(Request $request)
         ->orderBy("percent_shopping_point", 'desc')
         ->where('stock', '!=', 0)
         ->where('user_id', '!=', 0)
+        ->where('price', '>', 5000)
 
         ->paginate(30)
 //        ->reject(function($item){
