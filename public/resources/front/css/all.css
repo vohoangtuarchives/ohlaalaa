@@ -15433,3 +15433,10 @@ p.product-unit-price {
 }
 
 /* Search Suggestion Area Css Start */
+@media (max-width: 768px){
+    .vendor-banner{
+        width: 100%;
+        height: auto!important;
+        min-height: 235px;
+    }
+}
