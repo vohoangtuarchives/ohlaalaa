@@ -15,3 +15,6 @@ npm-debug.log
 yarn-error.log
 /public/assets/*
 /vendor
+/public/css
+/public/install
+/public/js
