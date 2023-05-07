@@ -293,6 +293,34 @@
 </div>
 {{-- END KOL MODAL --}}
 
+                    {{-- SET Transfer Point MODAL --}}
+                    <div class="modal fade" id="confirm-transfer-point" tabindex="-1" role="dialog" aria-labelledby="modal1" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+
+                                <div class="modal-header d-block text-center">
+                                    <h4 class="modal-title d-inline-block">{{ __("Cho Phep Thanh Vien Chuyen Diem") }}</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    <p class="text-center">{{ __("Ban xac nhan cho phep thanh vien nay duoc phep chuyen diem.") }}</p>
+                                    <p class="text-center">{{ __("Ban co muon tiep tuc?") }}</p>
+                                </div>
+
+                                <!-- Modal footer -->
+                                <div class="modal-footer justify-content-center">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ __("Hủy") }}</button>
+                                    <a class="btn btn-primary btn-ok">{{ __("Xác Nhận") }}</a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    {{-- END KOL MODAL --}}
 @endsection
 
 @section('scripts')

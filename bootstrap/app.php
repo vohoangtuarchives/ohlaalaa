@@ -15,9 +15,12 @@ $app = new Illuminate\Foundation\Application(
     dirname(__DIR__)
 );
 
-$app->bind('path.public', function() {
-   return base_path() . '/../';
-});
+if(env("APP_URL") != 'http://localhost'){
+    $app->bind('path.public', function() {
+        return base_path() . '/../';
+    });
+}
+
 
 /*
 |--------------------------------------------------------------------------

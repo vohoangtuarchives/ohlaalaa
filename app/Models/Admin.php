@@ -41,4 +41,8 @@ class Admin extends Authenticatable
         }
     }
 
+    public function transactions(){
+        return $this->hasMany(AdminTransaction::class);
+    }
+
 }

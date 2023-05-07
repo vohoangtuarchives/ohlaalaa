@@ -12,35 +12,35 @@
 		<!-- favicon -->
 		<link rel="icon"  type="image/x-icon" href="{{asset('assets/images/'.$gs->favicon)}}"/>
 		<!-- Bootstrap -->
-		<link href="{{asset('assets/admin/css/bootstrap.min.css')}}" rel="stylesheet" />
+		<link href="{{asset('resources/admin/css/bootstrap.min.css')}}" rel="stylesheet" />
 		<!-- Fontawesome -->
-		<link rel="stylesheet" href="{{asset('assets/admin/css/fontawesome.css')}}">
+		<link rel="stylesheet" href="{{asset('resources/admin/css/fontawesome.css')}}">
 		<!-- icofont -->
-		<link rel="stylesheet" href="{{asset('assets/admin/css/icofont.min.css')}}">
+		<link rel="stylesheet" href="{{asset('resources/admin/css/icofont.min.css')}}">
 		<!-- Sidemenu Css -->
-		<link href="{{asset('assets/admin/plugins/fullside-menu/css/dark-side-style.css')}}" rel="stylesheet" />
-		<link href="{{asset('assets/admin/plugins/fullside-menu/waves.min.css')}}" rel="stylesheet" />
+		<link href="{{asset('resources/admin/plugins/fullside-menu/css/dark-side-style.css')}}" rel="stylesheet" />
+		<link href="{{asset('resources/admin/plugins/fullside-menu/waves.min.css')}}" rel="stylesheet" />
 
-		<link href="{{asset('assets/admin/css/plugin.css')}}" rel="stylesheet" />
+		<link href="{{asset('resources/admin/css/plugin.css')}}" rel="stylesheet" />
 
-		<link href="{{asset('assets/admin/css/jquery.tagit.css')}}" rel="stylesheet" />
-    	<link rel="stylesheet" href="{{ asset('assets/admin/css/bootstrap-coloroicker.css') }}">
+		<link href="{{asset('resources/admin/css/jquery.tagit.css')}}" rel="stylesheet" />
+    	<link rel="stylesheet" href="{{ asset('resources/admin/css/bootstrap-coloroicker.css') }}">
 		<!-- Main Css -->
 
 		<!-- stylesheet -->
 		@if(DB::table('admin_languages')->where('is_default','=',1)->first()->rtl == 1)
 
-		<link href="{{asset('assets/admin/css/rtl/style.css')}}" rel="stylesheet"/>
-		<link href="{{asset('assets/admin/css/rtl/custom.css')}}" rel="stylesheet"/>
-		<link href="{{asset('assets/admin/css/rtl/responsive.css')}}" rel="stylesheet" />
-		<link href="{{asset('assets/admin/css/common.css')}}" rel="stylesheet" />
+		<link href="{{asset('resources/admin/css/rtl/style.css')}}" rel="stylesheet"/>
+		<link href="{{asset('resources/admin/css/rtl/custom.css')}}" rel="stylesheet"/>
+		<link href="{{asset('resources/admin/css/rtl/responsive.css')}}" rel="stylesheet" />
+		<link href="{{asset('resources/admin/css/common.css')}}" rel="stylesheet" />
 
 		@else
 
-		<link href="{{asset('assets/admin/css/style.css')}}" rel="stylesheet"/>
-		<link href="{{asset('assets/admin/css/custom.css')}}" rel="stylesheet"/>
-		<link href="{{asset('assets/admin/css/responsive.css')}}" rel="stylesheet" />
-		<link href="{{asset('assets/admin/css/common.css')}}" rel="stylesheet" />
+		<link href="{{asset('resources/admin/css/style.css')}}" rel="stylesheet"/>
+		<link href="{{asset('resources/admin/css/custom.css')}}" rel="stylesheet"/>
+		<link href="{{asset('resources/admin/css/responsive.css')}}" rel="stylesheet" />
+		<link href="{{asset('resources/admin/css/common.css')}}" rel="stylesheet" />
 
 		@endif
 
@@ -190,28 +190,28 @@
 			</script>
 
 		<!-- Dashboard Core -->
-		<script src="{{asset('assets/admin/js/vendors/jquery-1.12.4.min.js')}}"></script>
-    <script src="{{asset('assets/admin/js/vendors/vue.js')}}"></script>
-		<script src="{{asset('assets/admin/js/vendors/bootstrap.min.js')}}"></script>
-		<script src="{{asset('assets/admin/js/jqueryui.min.js')}}"></script>
+		<script src="{{asset('resources/admin/js/vendors/jquery-1.12.4.min.js')}}"></script>
+    <script src="{{asset('resources/admin/js/vendors/vue.js')}}"></script>
+		<script src="{{asset('resources/admin/js/vendors/bootstrap.min.js')}}"></script>
+		<script src="{{asset('resources/admin/js/jqueryui.min.js')}}"></script>
 		<!-- Fullside-menu Js-->
-		<script src="{{asset('assets/admin/plugins/fullside-menu/jquery.slimscroll.min.js')}}"></script>
-		<script src="{{asset('assets/admin/plugins/fullside-menu/waves.min.js')}}"></script>
+		<script src="{{asset('resources/admin/plugins/fullside-menu/jquery.slimscroll.min.js')}}"></script>
+		<script src="{{asset('resources/admin/plugins/fullside-menu/waves.min.js')}}"></script>
 
-		<script src="{{asset('assets/admin/js/plugin.js')}}"></script>
-		<script src="{{asset('assets/admin/js/Chart.min.js')}}"></script>
-		<script src="{{asset('assets/admin/js/tag-it.js')}}"></script>
-		<script src="{{asset('assets/admin/js/nicEdit.js')}}"></script>
-        <script src="{{asset('assets/admin/js/bootstrap-colorpicker.min.js') }}"></script>
-        <script src="{{asset('assets/admin/js/notify.js') }}"></script>
+		<script src="{{asset('resources/admin/js/plugin.js')}}"></script>
+		<script src="{{asset('resources/admin/js/Chart.min.js')}}"></script>
+		<script src="{{asset('resources/admin/js/tag-it.js')}}"></script>
+		<script src="{{asset('resources/admin/js/nicEdit.js')}}"></script>
+        <script src="{{asset('resources/admin/js/bootstrap-colorpicker.min.js') }}"></script>
+        <script src="{{asset('resources/admin/js/notify.js') }}"></script>
 
-        <script src="{{asset('assets/admin/js/jquery.canvasjs.min.js')}}"></script>
+        <script src="{{asset('resources/admin/js/jquery.canvasjs.min.js')}}"></script>
 
-		<script src="{{asset('assets/admin/js/load.js')}}"></script>
+		<script src="{{asset('resources/admin/js/load.js')}}"></script>
 		<!-- Custom Js-->
-		<script src="{{asset('assets/admin/js/custom.js')}}"></script>
+		<script src="{{asset('resources/admin/js/custom.js')}}"></script>
 		<!-- AJAX Js-->
-		<script src="{{asset('assets/admin/js/myscript.js')}}"></script>
+		<script src="{{asset('resources/admin/js/myscript.js')}}"></script>
 
 
 

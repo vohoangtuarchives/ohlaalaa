@@ -38,6 +38,7 @@ class User extends Authenticatable
         , 'vendor_from'
         , 'kol'
         , 'shop_url'
+        , 'can_transfer_point'
     ];
 
 

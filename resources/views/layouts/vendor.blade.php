@@ -18,7 +18,7 @@
 		<!-- icofont -->
 		<link rel="stylesheet" href="{{asset('assets/vendor/css/icofont.min.css')}}">
 		<!-- Sidemenu Css -->
-		<link href="{{asset('assets/admin/plugins/fullside-menu/css/dark-side-style.css')}}" rel="stylesheet" />
+		<link href="{{asset('resources/admin/plugins/fullside-menu/css/dark-side-style.css')}}" rel="stylesheet" />
 		<link href="{{asset('assets/vendor/plugins/fullside-menu/waves.min.css')}}" rel="stylesheet" />
 
 		<link href="{{asset('assets/vendor/css/plugin.css')}}" rel="stylesheet" />
@@ -30,17 +30,17 @@
 
 	@if($langg->rtl == "1")
 
-	<link href="{{asset('assets/admin/css/rtl/style.css')}}" rel="stylesheet"/>
-	<link href="{{asset('assets/admin/css/rtl/custom.css')}}" rel="stylesheet"/>
-	<link href="{{asset('assets/admin/css/rtl/responsive.css')}}" rel="stylesheet" />
-	<link href="{{asset('assets/admin/css/common.css')}}" rel="stylesheet" />
+	<link href="{{asset('resources/admin/css/rtl/style.css')}}" rel="stylesheet"/>
+	<link href="{{asset('resources/admin/css/rtl/custom.css')}}" rel="stylesheet"/>
+	<link href="{{asset('resources/admin/css/rtl/responsive.css')}}" rel="stylesheet" />
+	<link href="{{asset('resources/admin/css/common.css')}}" rel="stylesheet" />
 
 	@else
 
-	<link href="{{asset('assets/admin/css/style.css')}}" rel="stylesheet"/>
-	<link href="{{asset('assets/admin/css/custom.css')}}" rel="stylesheet"/>
-	<link href="{{asset('assets/admin/css/responsive.css')}}" rel="stylesheet" />
-	<link href="{{asset('assets/admin/css/common.css')}}" rel="stylesheet" />
+	<link href="{{asset('resources/admin/css/style.css')}}" rel="stylesheet"/>
+	<link href="{{asset('resources/admin/css/custom.css')}}" rel="stylesheet"/>
+	<link href="{{asset('resources/admin/css/responsive.css')}}" rel="stylesheet" />
+	<link href="{{asset('resources/admin/css/common.css')}}" rel="stylesheet" />
 
 	@endif
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\AdminTransaction;
 use Auth;
 use Validator;
 use Datatables;
@@ -82,6 +83,7 @@ class UserController extends Controller
                 $kol_checked = ( $data->kol==1 ? 'checked' : '' );
                 $kol_special_checked = ( $data->special_kol==1 ? 'checked' : '' );
                 $kol = $special_kol = '';
+                $transfer_points_checked = ( $data->can_transfer_point == 1 ? 'checked' : '' );
                 if ($data->ranking > 1 || $data->ranking_purchased > 1) {
                     $kol = '<div class="form-check form-check-inline">
                     <input type="checkbox" id="'. $data->id.'" value="'.$data->id.'"'.$kol_checked.' >&nbsp
@@ -94,6 +96,11 @@ class UserController extends Controller
 
                 }
 
+                $transfer_points_html = '<div class="form-check form-check-inline">
+                    <input type="checkbox" id="'. $data->id.'" value="'.$data->id.'"'.$transfer_points_checked.' >&nbsp
+                    <label class="form-check-label" for="user_transfer_point">Transfer Point</label>
+                    </div>';
+
                 return '<div class="action-list">
                     <a href="' . route('admin-user-secret',$data->id) . '" > <i class="fas fa-user"></i> Secret Login</a>
                     <a href="' . route('admin-user-show',$data->id) . '" > <i class="fas fa-eye"></i> Details</a>
@@ -104,7 +111,9 @@ class UserController extends Controller
                     '<br><a style="background: #007bff;"  href="javascript:;" data-href="' . route('admin-user-confirm-kol',$data->id) . '" data-toggle="modal" data-target="#confirm-kol" class="delete">
                     '.$kol.'</a>
                     <a style="background: #42a1cf;"  href="javascript:;" data-href="' . route('admin-user-confirm-special-kol',$data->id) . '" data-toggle="modal" data-target="#confirm-special-kol" class="delete">'.$special_kol.'</a>
-                    </div>';
+                    <a style="background: #0724ac;"  href="javascript:;" data-href="' . route('admin-user-confirmTransferPoint',$data->id) . '" data-toggle="modal" data-target="#confirm-transfer-point" class="delete">'.$transfer_points_html.'</a>
+                    </div>
+                    ';
 
             })
             ->rawColumns(['action', 'rank_ad_name'])
@@ -1355,7 +1364,19 @@ class UserController extends Controller
         $msg = 'Successfully.';
         return response()->json($msg);
     }
-
+    public function confirmTransferPoint($id){
+        $user = User::findOrFail($id);
+        if ( $user->can_transfer_point == 1) {
+            $user->can_transfer_point = '0';
+            disable_transfer_point_log($user);
+        } else {
+            $user->can_transfer_point = '1';
+            enable_transfer_point_log($user);
+        }
+        $user->update();
+        $msg = 'Successfully.';
+        return response()->json($msg);
+    }
     public function confirmSpecialKol($id) {
         $user = User::findOrFail($id);
         if ( $user->special_kol == 1) {

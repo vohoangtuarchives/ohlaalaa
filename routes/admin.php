@@ -384,6 +384,10 @@ Route::prefix('admin')->group(function ()
             ->name('admin-user-confirm-kol');
         Route::get('/users/specialkol/{id}', 'Admin\UserController@confirmSpecialKol')
             ->name('admin-user-confirm-special-kol');
+
+        Route::get('/users/set-tranfer-point/{id}', 'Admin\UserController@confirmTransferPoint')
+            ->name('admin-user-confirmTransferPoint');
+
         Route::get('/user/{id}/show', 'Admin\UserController@show')
             ->name('admin-user-show');
         Route::get('/users/ban/{id1}/{id2}', 'Admin\UserController@ban')
