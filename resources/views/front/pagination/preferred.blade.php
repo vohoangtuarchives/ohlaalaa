@@ -4,7 +4,7 @@
                     , 'Aug' => 'Tháng 8', 'Sep' => 'Tháng 9', 'Oct' => 'Tháng 10', 'Nov' => 'Tháng 11', 'Dec' => 'Tháng 12'];
         @endphp
         @foreach($preferrers as $pre)
-        <div class="col-md-6 col-lg-4">
+        <div class="col-md-12 col-lg-6">
               <div class="blog-box">
                 <div class="blog-images">
                     <div class="img">
