@@ -169,6 +169,9 @@
             <li>
                 <a href="{{ route('admin-user-image') }}"><span>{{ __('Customer Default Image') }}</span></a>
             </li>
+            <li>
+                <a href="{{ route('admin-user-transfer-point') }}"><span>{{ __('Transfer Points') }}</span></a>
+            </li>
         </ul>
     </li>
 

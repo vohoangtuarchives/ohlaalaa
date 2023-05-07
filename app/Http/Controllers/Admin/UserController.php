@@ -1389,4 +1389,8 @@ class UserController extends Controller
         $msg = 'Successfully.';
         return response()->json($msg);
     }
+
+    public function showTransferPoint(){
+        return view('admin.user.transfer-point');
+    }
 }

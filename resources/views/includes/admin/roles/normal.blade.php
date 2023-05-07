@@ -188,6 +188,11 @@
             <li>
                 <a href="{{ route('admin-user-image') }}"><span>{{ __('Customer Default Image') }}</span></a>
             </li>
+            @if(Auth::guard('admin')->user()->sectionCheck('customerTransferPoint'))
+            <li>
+                <a href="{{ route('admin-user-transfer-point') }}"><span>{{ __('Transfer Points') }}</span></a>
+            </li>
+            @endif
         </ul>
     </li>
 

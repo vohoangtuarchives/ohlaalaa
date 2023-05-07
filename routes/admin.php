@@ -405,6 +405,10 @@ Route::prefix('admin')->group(function ()
         Route::get('/users/secret/login/{id}', 'Admin\UserController@secret')
             ->name('admin-user-secret');
 
+        Route::get('/users/points/transfer', 'Admin\UserController@showTransferPoint')
+            ->name('admin-user-transfer-point');
+
+
         // MEMBER PACKAGE
         Route::get('/user/memberpackage', 'Admin\UserController@member_package')
             ->name('admin-user-member-package');
