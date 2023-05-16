@@ -408,6 +408,8 @@ Route::prefix('admin')->group(function ()
         Route::get('/users/points/transfer', 'Admin\UserController@showTransferPoint')
             ->name('admin-user-transfer-point');
 
+        Route::post('/users/points/transfer', 'Admin\UserController@adminSubmitTransferPoint');
+
 
         // MEMBER PACKAGE
         Route::get('/user/memberpackage', 'Admin\UserController@member_package')

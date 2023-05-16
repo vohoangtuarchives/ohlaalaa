@@ -238,6 +238,11 @@ Route::prefix('user')->group(function ()
     Route::get('/orders/reports/kolconsumerbonus/export/{from}', 'User\OrderController@exportKOLConsumerBonusForUser')
         ->name('user-order-report-kol-consumerbonus-export');
 
+    Route::get('/transfer-point', 'User\PointController@show')
+        ->name('user-transfer-point');
+
+    Route::post('/transfer-point', 'User\PointController@transfer');
+
 });
 
 // ************************************ USER SECTION ENDS**********************************************

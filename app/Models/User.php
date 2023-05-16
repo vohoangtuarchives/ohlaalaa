@@ -39,6 +39,8 @@ class User extends Authenticatable
         , 'kol'
         , 'shop_url'
         , 'can_transfer_point'
+        , 'max_transfer_point'
+        , 'transfered_shopping_point'
     ];
 
 
@@ -680,5 +682,7 @@ class User extends Authenticatable
         return $name;
     }
 
-
+    public function transactions(){
+        return $this->hasMany(UserTransaction::class);
+    }
 }

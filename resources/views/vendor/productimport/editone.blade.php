@@ -1,9 +1,9 @@
 @extends('layouts.vendor')
 @section('styles')
 
-<link href="{{asset('assets/admin/css/product.css')}}" rel="stylesheet" />
-<link href="{{asset('assets/admin/css/jquery.Jcrop.css')}}" rel="stylesheet" />
-<link href="{{asset('assets/admin/css/Jcrop-style.css')}}" rel="stylesheet" />
+<link href="{{asset('resources/admin/css/product.css')}}" rel="stylesheet" />
+<link href="{{asset('resources/admin/css/jquery.Jcrop.css')}}" rel="stylesheet" />
+<link href="{{asset('resources/admin/css/Jcrop-style.css')}}" rel="stylesheet" />
 
 @endsection
 @section('content')
@@ -1007,9 +1007,9 @@
 	// Gallery Section Update Ends
 </script>
 
-<script src="{{asset('assets/admin/js/jquery.Jcrop.js')}}"></script>
+<script src="{{asset('resources/admin/js/jquery.Jcrop.js')}}"></script>
 
-<script src="{{asset('assets/admin/js/jquery.SimpleCropper.js')}}"></script>
+<script src="{{asset('resources/admin/js/jquery.SimpleCropper.js')}}"></script>
 
 <script type="text/javascript">
 	$('.cropme').simpleCropper();
@@ -1077,5 +1077,5 @@
 	});
 </script>
 
-<script src="{{asset('assets/admin/js/product.js')}}"></script>
+<script src="{{asset('resources/admin/js/product.js')}}"></script>
 @endsection

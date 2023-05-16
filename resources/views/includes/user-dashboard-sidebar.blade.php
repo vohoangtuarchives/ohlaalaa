@@ -116,7 +116,13 @@
                 </li>
             @endif
 
-
+              @if ($user->can_transfer_point)
+                <li class="{{ $link == route('user-transfer-point') ? 'active':'' }}">
+                  <a href="{{ route('user-transfer-point') }}">
+                    Chuyển Điểm
+                  </a>
+                </li>
+              @endif
               <li class="{{ $link == route('user-reset') ? 'active':'' }}">
                 <a href="{{ route('user-reset') }}">
                  {{ $langg->lang206 }}

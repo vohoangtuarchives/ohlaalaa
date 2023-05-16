@@ -12,20 +12,20 @@
 		<!-- favicon -->
 		<link rel="icon"  type="image/x-icon" href="{{asset('assets/images/'.$gs->favicon)}}"/>
 		<!-- Bootstrap -->
-		<link href="{{asset('assets/vendor/css/bootstrap.min.css')}}" rel="stylesheet" />
+		<link href="{{asset('resources/vendor/css/bootstrap.min.css')}}" rel="stylesheet" />
 		<!-- Fontawesome -->
-		<link rel="stylesheet" href="{{asset('assets/vendor/css/fontawesome.css')}}">
+		<link rel="stylesheet" href="{{asset('resources/vendor/css/fontawesome.css')}}">
 		<!-- icofont -->
-		<link rel="stylesheet" href="{{asset('assets/vendor/css/icofont.min.css')}}">
+		<link rel="stylesheet" href="{{asset('resources/vendor/css/icofont.min.css')}}">
 		<!-- Sidemenu Css -->
 		<link href="{{asset('resources/admin/plugins/fullside-menu/css/dark-side-style.css')}}" rel="stylesheet" />
-		<link href="{{asset('assets/vendor/plugins/fullside-menu/waves.min.css')}}" rel="stylesheet" />
+		<link href="{{asset('resources/vendor/plugins/fullside-menu/waves.min.css')}}" rel="stylesheet" />
 
-		<link href="{{asset('assets/vendor/css/plugin.css')}}" rel="stylesheet" />
+		<link href="{{asset('resources/vendor/css/plugin.css')}}" rel="stylesheet" />
 
-		<link href="{{asset('assets/vendor/css/jquery.tagit.css')}}" rel="stylesheet" />
-    	<link rel="stylesheet" href="{{ asset('assets/vendor/css/bootstrap-coloroicker.css') }}">
-        <link rel="stylesheet" href="{{ asset('assets/vendor/css/toastr.css') }}">
+		<link href="{{asset('resources/vendor/css/jquery.tagit.css')}}" rel="stylesheet" />
+    	<link rel="stylesheet" href="{{ asset('resources/vendor/css/bootstrap-coloroicker.css') }}">
+        <link rel="stylesheet" href="{{ asset('resources/vendor/css/toastr.css') }}">
 		<!-- Main Css -->
 
 	@if($langg->rtl == "1")
@@ -258,26 +258,26 @@
 		</script>
 
 		<!-- Dashboard Core -->
-		<script src="{{asset('assets/vendor/js/vendors/jquery-1.12.4.min.js')}}"></script>
-		<script src="{{asset('assets/vendor/js/vendors/bootstrap.min.js')}}"></script>
-		<script src="{{asset('assets/vendor/js/jqueryui.min.js')}}"></script>
+		<script src="{{asset('resources/vendor/js/vendors/jquery-1.12.4.min.js')}}"></script>
+		<script src="{{asset('resources/vendor/js/vendors/bootstrap.min.js')}}"></script>
+		<script src="{{asset('resources/vendor/js/jqueryui.min.js')}}"></script>
 		<!-- Fullside-menu Js-->
-		<script src="{{asset('assets/vendor/plugins/fullside-menu/jquery.slimscroll.min.js')}}"></script>
-		<script src="{{asset('assets/vendor/plugins/fullside-menu/waves.min.js')}}"></script>
+		<script src="{{asset('resources/vendor/plugins/fullside-menu/jquery.slimscroll.min.js')}}"></script>
+		<script src="{{asset('resources/vendor/plugins/fullside-menu/waves.min.js')}}"></script>
 
-		<script src="{{asset('assets/vendor/js/plugin.js')}}"></script>
+		<script src="{{asset('resources/vendor/js/plugin.js')}}"></script>
 
-		<script src="{{asset('assets/vendor/js/Chart.min.js')}}"></script>
-		<script src="{{asset('assets/vendor/js/tag-it.js')}}"></script>
-		<script src="{{asset('assets/vendor/js/nicEdit.js')}}"></script>
-        <script src="{{asset('assets/vendor/js/bootstrap-colorpicker.min.js') }}"></script>
-        <script src="{{asset('assets/vendor/js/notify.js') }}"></script>
-		<script src="{{asset('assets/vendor/js/load.js')}}"></script>
-        <script src="{{asset('assets/vendor/js/toastr.js')}}"></script>
+		<script src="{{asset('resources/vendor/js/Chart.min.js')}}"></script>
+		<script src="{{asset('resources/vendor/js/tag-it.js')}}"></script>
+		<script src="{{asset('resources/vendor/js/nicEdit.js')}}"></script>
+        <script src="{{asset('resources/vendor/js/bootstrap-colorpicker.min.js') }}"></script>
+        <script src="{{asset('resources/vendor/js/notify.js') }}"></script>
+		<script src="{{asset('resources/vendor/js/load.js')}}"></script>
+        <script src="{{asset('resources/vendor/js/toastr.js')}}"></script>
 		<!-- Custom Js-->
-		<script src="{{asset('assets/vendor/js/custom.js')}}"></script>
+		<script src="{{asset('resources/vendor/js/custom.js')}}"></script>
 		<!-- AJAX Js-->
-		<script src="{{asset('assets/vendor/js/myscript.js')}}"></script>
+		<script src="{{asset('resources/vendor/js/myscript.js')}}"></script>
 		@yield('scripts')
 
 @if($gs->is_admin_loader == 0)

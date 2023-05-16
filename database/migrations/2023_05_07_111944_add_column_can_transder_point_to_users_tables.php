@@ -15,6 +15,8 @@ class AddColumnCanTransderPointToUsersTables extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->boolean("can_transfer_point")->default(false);
+            $table->double("max_transfer_point")->default(0);
+            $table->double("transfered_shopping_point")->default(0);
         });
     }
 
@@ -27,6 +29,8 @@ class AddColumnCanTransderPointToUsersTables extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn("can_transfer_point");
+            $table->dropColumn("max_transfer_point");
+            $table->dropColumn("transfered_shopping_point");
         });
     }
 }

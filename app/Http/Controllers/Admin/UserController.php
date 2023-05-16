@@ -1368,9 +1368,11 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         if ( $user->can_transfer_point == 1) {
             $user->can_transfer_point = '0';
+            $user->max_transfer_point = 0;
             disable_transfer_point_log($user);
         } else {
             $user->can_transfer_point = '1';
+            $user->max_transfer_point = $user->shopping_point * config("tuezy.monthly_transfer_percents", 0.2);
             enable_transfer_point_log($user);
         }
         $user->update();
@@ -1391,6 +1393,80 @@ class UserController extends Controller
     }
 
     public function showTransferPoint(){
-        return view('admin.user.transfer-point');
+        $customers = User::all(["id","email"]);
+        $adminTransactions = AdminTransaction::where("name", '=', AdminTransaction::ADMIN_TRANSFER_POINT)->limit(60)->get();
+        return view('admin.user.transfer-point', [
+            "customers" => $customers,
+            'transactions' => $adminTransactions
+        ]);
+    }
+
+    public function adminSubmitTransferPoint(Request $request){
+
+        $rules = [
+            'from_customer' => 'required|email',
+            'to_customer' => 'required|email',
+            'amount' => 'required|numeric'
+        ];
+
+        $validator = \Illuminate\Support\Facades\Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return response()->json(array('errors' => $validator->getMessageBag()->toArray()));
+        }
+
+
+
+        DB::beginTransaction();
+
+        try {
+            $fromCustomer = User::where("email", "=", $request->input("from_customer"))->first();
+
+            $toCustomer = User::where("email", "=", $request->input("to_customer"))->first();
+
+            $fromCustomer->shopping_point = $fromCustomer->shopping_point - $request->get("amount");
+            $toCustomer->shopping_point = $toCustomer->shopping_point + $request->get("amount");
+
+            $point_exchange = $request->input("amount");
+
+            $point_log = new UserPointLog();
+            $point_log->user_id = $fromCustomer->id;
+            if($fromCustomer->email != 'demo@demo.com'){
+                $point_log->log_type = 'Admin Transfer Point';
+                $point_log->shopping_point_balance = isset($fromCustomer->shopping_point) ? $fromCustomer->shopping_point : 0;
+                $point_log->exchange_rate = 1;
+                $point_log->note = "Hệ thống chuyển {$point_exchange} SP của bạn sang cho ".$toCustomer->email;
+                $point_log->descriptions = "Hệ thống chuyển {$point_exchange} SP của bạn sang cho ".$toCustomer->email;
+                $point_log->shopping_point = -$point_exchange;
+                $fromCustomer->shopping_point = $fromCustomer->shopping_point - $point_exchange;
+
+            }
+            $fromCustomer->save();
+            $point_log->save();
+
+            $point_log = new UserPointLog();
+            $point_log->user_id = $toCustomer->id;
+
+            $point_log->log_type = 'Admin Transfer Point';
+            $point_log->shopping_point_balance = isset($toCustomer->shopping_point) ? $toCustomer->shopping_point : 0;
+            $point_log->exchange_rate = 1;
+            $point_log->note = ($fromCustomer->email == 'demo@demo.com'? 'Ohlaalaa': $fromCustomer->email ). " chuyển {$point_exchange} SP cho bạn";
+            $point_log->descriptions = ($fromCustomer->email == 'demo@demo.com'? 'Ohlaalaa': $fromCustomer->email ). " chuyển {$point_exchange} SP cho bạn";
+            $point_log->shopping_point = $point_exchange;
+            $toCustomer->shopping_point = $toCustomer->shopping_point + $point_exchange;
+            $toCustomer->save();
+            $point_log->save();
+
+            admin_log(\App\Models\AdminTransaction::ADMIN_TRANSFER_POINT, "Chuyển ". $request->input("amount"). " SP từ ". $request->input("from_customer") . " sang ".$request->input("to_customer"));
+
+            DB::commit();
+            // all good
+        } catch (\Exception $e) {
+            DB::rollback();
+            return response()->json(array('errors' => $validator->getMessageBag()->toArray()));
+        }
+        $msg = 'Data Updated Successfully.';
+        return response()->json($msg);
+
     }
 }

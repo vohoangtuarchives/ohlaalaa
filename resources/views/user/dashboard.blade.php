@@ -227,6 +227,6 @@
 
 @section('scripts')
 
-<script src="{{asset('assets/front/js/dashboard.js')}}"></script>
+<script src="{{asset('resources/front/js/dashboard.js')}}"></script>
 
 @endsection

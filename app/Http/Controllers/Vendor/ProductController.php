@@ -511,7 +511,7 @@ class ProductController extends Controller
                         else
                         {
 
-                            if(in_array(0,$input['size_qty'])){
+                            if(in_array(0,$input['size_qty'] ?? [0])){
                                 return response()->json(array('errors' => [0 => 'Số lượng size không được bằng 0.']));
                             }
                             $input['size_qty'] = implode(',', $request->size_qty);

@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('styles')
 
-<link href="{{asset('assets/admin/css/product.css')}}" rel="stylesheet"/>
+<link href="{{asset('resources/admin/css/product.css')}}" rel="stylesheet"/>
 
 @endsection
 @section('content')
@@ -81,5 +81,5 @@
 
 @section('scripts')
 
-<script src="{{asset('assets/admin/js/product.js')}}"></script>
+<script src="{{asset('resources/admin/js/product.js')}}"></script>
 @endsection

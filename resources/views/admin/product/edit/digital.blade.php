@@ -715,5 +715,5 @@
 	});
 </script>
 
-<script src="{{asset('assets/admin/js/product.js')}}"></script>
+<script src="{{asset('resources/admin/js/product.js')}}"></script>
 @endsection

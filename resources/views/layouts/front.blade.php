@@ -38,23 +38,23 @@
 {{-- @if($langg->rtl == "1")
 
     <!-- htd-custom css -->
-    <link rel="stylesheet" href="{{asset('assets/front/css/rtl/htd-custom.css')}}">
+    <link rel="stylesheet" href="{{asset('resources/front/css/rtl/htd-custom.css')}}">
 
 	<!-- stylesheet -->
-    <link rel="stylesheet" href="{{asset('assets/front/css/rtl/all.css')}}">
+    <link rel="stylesheet" href="{{asset('resources/front/css/rtl/all.css')}}">
 
     <!--Updated CSS-->
- 	<link rel="stylesheet" href="{{ asset('assets/front/css/rtl/styles.php?color='.str_replace('#','',$gs->colors).'&amp;'.'header_color='.str_replace('#','',$gs->header_color).'&amp;'.'footer_color='.str_replace('#','',$gs->footer_color).'&amp;'.'copyright_color='.str_replace('#','',$gs->copyright_color).'&amp;'.'menu_color='.str_replace('#','',$gs->menu_color).'&amp;'.'menu_hover_color='.str_replace('#','',$gs->menu_hover_color)) }}">
+ 	<link rel="stylesheet" href="{{ asset('resources/front/css/rtl/styles.php?color='.str_replace('#','',$gs->colors).'&amp;'.'header_color='.str_replace('#','',$gs->header_color).'&amp;'.'footer_color='.str_replace('#','',$gs->footer_color).'&amp;'.'copyright_color='.str_replace('#','',$gs->copyright_color).'&amp;'.'menu_color='.str_replace('#','',$gs->menu_color).'&amp;'.'menu_hover_color='.str_replace('#','',$gs->menu_hover_color)) }}">
 
 @else --}}
     <!-- htd-custom css -->
-	<link rel="stylesheet" href="{{asset('assets/front/css/htd-custom.css')}}">
+	<link rel="stylesheet" href="{{asset('resources/front/css/htd-custom.css')}}">
 
 	<!-- stylesheet -->
     <link rel="stylesheet" href="{{asset('resources/front/css/all.css')}}">
 
     <!--Updated CSS-->
- 	<link rel="stylesheet" href="{{ asset('assets/front/css/styles.php?color='.str_replace('#','',$gs->colors).'&amp;'.'header_color='.str_replace('#','',$gs->header_color).'&amp;'.'footer_color='.str_replace('#','',$gs->footer_color).'&amp;'.'copyright_color='.str_replace('#','',$gs->copyright_color).'&amp;'.'menu_color='.str_replace('#','',$gs->menu_color).'&amp;'.'menu_hover_color='.str_replace('#','',$gs->menu_hover_color)) }}">
+ 	<link rel="stylesheet" href="{{ asset('resources/front/css/styles.php?color='.str_replace('#','',$gs->colors).'&amp;'.'header_color='.str_replace('#','',$gs->header_color).'&amp;'.'footer_color='.str_replace('#','',$gs->footer_color).'&amp;'.'copyright_color='.str_replace('#','',$gs->copyright_color).'&amp;'.'menu_color='.str_replace('#','',$gs->menu_color).'&amp;'.'menu_hover_color='.str_replace('#','',$gs->menu_hover_color)) }}">
     {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
 {{-- @endif --}}
 
@@ -69,7 +69,7 @@
 @if($gs->is_loader == 1 && $_SERVER['REQUEST_URI'] != "/")
 	<div class="preloader" id="preloader" style="background: url({{asset('assets/images/'.$gs->loader)}}) no-repeat scroll center center #FFF;"></div>
 	@endif
-	<div class="xloader d-none" id="xloader" style="background: url({{asset('assets/front/images/xloading.gif')}}) no-repeat scroll center center #FFF;"></div>
+	<div class="xloader d-none" id="xloader" style="background: url({{asset('resources/front/images/xloading.gif')}}) no-repeat scroll center center #FFF;"></div>
 
 @if($gs->is_popup== 1)
 
@@ -1165,27 +1165,27 @@ aria-hidden="true">
 </script>
 
 	<!-- jquery -->
-	{{-- <script src="{{asset('assets/front/js/all.js')}}"></script> --}}
-	<script src="{{asset('assets/front/js/jquery.js')}}"></script>
-	{{-- <script src="{{asset('assets/front/js/vue.js')}}"></script> --}}
-	<script src="{{asset('assets/front/jquery-ui/jquery-ui.min.js')}}"></script>
+	{{-- <script src="{{asset('resources/front/js/all.js')}}"></script> --}}
+	<script src="{{asset('resources/front/js/jquery.js')}}"></script>
+	{{-- <script src="{{asset('resources/front/js/vue.js')}}"></script> --}}
+	<script src="{{asset('resources/front/jquery-ui/jquery-ui.min.js')}}"></script>
 	<!-- popper -->
-	<script src="{{asset('assets/front/js/popper.min.js')}}"></script>
+	<script src="{{asset('resources/front/js/popper.min.js')}}"></script>
 	<!-- bootstrap -->
-	<script src="{{asset('assets/front/js/bootstrap.min.js')}}"></script>
+	<script src="{{asset('resources/front/js/bootstrap.min.js')}}"></script>
 	<!-- plugin js-->
-	<script src="{{asset('assets/front/js/plugin.js')}}"></script>
+	<script src="{{asset('resources/front/js/plugin.js')}}"></script>
 
-	<script src="{{asset('assets/front/js/xzoom.min.js')}}"></script>
-	<script src="{{asset('assets/front/js/jquery.hammer.min.js')}}"></script>
-	<script src="{{asset('assets/front/js/setup.js')}}"></script>
-	<script src="{{asset('assets/front/js/toastr.js')}}"></script>
+	<script src="{{asset('resources/front/js/xzoom.min.js')}}"></script>
+	<script src="{{asset('resources/front/js/jquery.hammer.min.js')}}"></script>
+	<script src="{{asset('resources/front/js/setup.js')}}"></script>
+	<script src="{{asset('resources/front/js/toastr.js')}}"></script>
 	<!-- main -->
-	<script src="{{asset('assets/front/js/main.js')}}"></script>
+	<script src="{{asset('resources/front/js/main.js')}}"></script>
     {{-- <script type="text/javascript" src="https://unpkg.com/@cometchat-pro/chat@3.0.1/CometChat.js"></script> --}}
 	<!-- custom -->
-    <script src="{{asset('assets/front/js/custom.js')}}"></script>
-    {{-- <script src="{{asset('assets/front/js/app.js')}}"></script> --}}
+    <script src="{{asset('resources/front/js/custom.js')}}"></script>
+    {{-- <script src="{{asset('resources/front/js/app.js')}}"></script> --}}
     {{-- <script src="https://www.google.com/recaptcha/api.js"></script> --}}
     <script src="{{ asset('js/app.js') }}" defer></script>
 
