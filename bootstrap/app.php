@@ -15,12 +15,12 @@ $app = new Illuminate\Foundation\Application(
     dirname(__DIR__)
 );
 
-//if(\Illuminate\Support\Str::contains(env("APP_URL"), "localhost") === false){
-//    echo 'localhost';
-//    $app->bind('path.public', function() {
-//        return base_path() . '/../';
-//    });
-//}
+if(\Illuminate\Support\Str::contains(env("APP_URL"), "localhost") === false){
+    echo 'localhost';
+    $app->bind('path.public', function() {
+        return base_path() . '/../';
+    });
+}
 
 
 /*
