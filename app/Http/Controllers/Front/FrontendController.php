@@ -324,11 +324,25 @@ class FrontendController extends Controller
             return false;
 
           });
+
+        $new_products =  Product::with('user')
+                     ->select($selectable)
+              ->orderBy('id','desc')->take(50)
+              ->get()->reject(function($item){
+                  if($item->user_id != 0){
+                       if($item->user->is_vendor != 2){
+                                return true;
+               }
+           }
+          return false;
+       });
+
+
           if(getenv('REMOTE_ADDR') == '14.187.102.158') {
             // dd($latest_products->chunk(10));
                     //    dd($sale_products->chunk(3));
                     }
-	    return view('front.index',compact('ps','services','reviews','large_banners','bottom_small_banners','sliders','top_small_banners','feature_products','best_products','top_products','hot_products','latest_products','big_products','trending_products','sale_products','discount_products','partners'));
+	    return view('front.index',compact('new_products','ps','services','reviews','large_banners','bottom_small_banners','sliders','top_small_banners','feature_products','best_products','top_products','hot_products','latest_products','big_products','trending_products','sale_products','discount_products','partners'));
 	}
 
     public function extraIndex()

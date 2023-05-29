@@ -88,7 +88,30 @@
 	{{-- Slider buttom banner End --}}
 
 	@endif
+	<section  class="trending product_new">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 remove-padding">
+					<div class="section-top">
+						<h2 class="section-title">
+							SP Mới
+						</h2>
+						{{-- <a href="#" class="link">View All</a> --}}
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12 remove-padding">
+					<div class="trending-item-slider">
+						@foreach($new_products as $prod)
+							@include('includes.product.slider-product')
+						@endforeach
+					</div>
+				</div>
 
+			</div>
+		</div>
+	</section>
 	@if($ps->featured == 1)
 		<!-- Trending Item Area Start -->
 		<section  class="trending">

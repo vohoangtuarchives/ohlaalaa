@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Front;
 
+use App\Models\Product;
 use Auth;
 use App\Models\Order;
 use App\Models\Alepay;
@@ -87,7 +88,7 @@ class AlepayController extends Controller
                 $point_log_declined->shopping_point_balance = isset($consumer->shopping_point) ? $consumer->shopping_point : 0;
                 $point_log_declined->exchange_rate = 0;
                 $point_log_declined->note = 'Return from order ['.$data->id.'] - SP Declined = '.$sp_declined;
-                $point_log_declined->descriptions = 'B?n du?c hoàn tr? shopping point c?a don hàng s? ['.$data->order_number.']';
+                $point_log_declined->descriptions = 'B?n du?c hoï¿½n tr? shopping point c?a don hï¿½ng s? ['.$data->order_number.']';
                 $point_log_declined->reward_point = 0;
                 $point_log_declined->shopping_point = $sp_handling;
                 $point_log_declined->amount = $data->pay_amount1;
