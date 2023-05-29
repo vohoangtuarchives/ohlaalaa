@@ -15445,3 +15445,8 @@ p.product-unit-price {
     align-items: center;
     justify-content: center;
 }
+.owl-prev, .owl-next{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
