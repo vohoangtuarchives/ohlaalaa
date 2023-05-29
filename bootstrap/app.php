@@ -16,7 +16,6 @@ $app = new Illuminate\Foundation\Application(
 );
 
 if(\Illuminate\Support\Str::contains(env("APP_URL"), "localhost") === false){
-    echo 'localhost';
     $app->bind('path.public', function() {
         return base_path() . '/../';
     });
