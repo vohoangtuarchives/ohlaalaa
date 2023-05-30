@@ -10,6 +10,7 @@ use App\Models\Order;
 use App\Models\District;
 use App\Models\Province;
 use App\Enums\ModuleCode;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Classes\CometChatHTD;
@@ -554,7 +555,6 @@ class ViettelPostController extends Controller
                 "ORDER_NOTE" => "",
                 "LIST_ITEM" => $listproduct,
             );
-            dd($requestArr);
             $header = array(
                 'Content-Type: application/json',
                 'Token: '.$token
@@ -622,6 +622,8 @@ class ViettelPostController extends Controller
             // $rrs [] = $rqs;
             // $rrs [] = $rps;
             // dd($rrs);
+
+            Log::debug($response);
             if(!$response){
                 return array(false, $order, "Response failed!");
             }
