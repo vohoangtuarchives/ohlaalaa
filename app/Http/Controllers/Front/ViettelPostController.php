@@ -449,7 +449,7 @@ class ViettelPostController extends Controller
 
         if (!$to_province || !$to_district) return array(false, $order, "To destination null");
         $receiver_address = $order->is_shipdiff ? $order->shipping_address : $order->customer_address;
-        //$receiver_address = $receiver_address.','.$to_ward->name.','.$to_district->name.','.$to_province->name;
+        $receiver_address = $receiver_address.','.$to_ward->name.','.$to_district->name.','.$to_province->name;
         $order_shipping_cost = 0;
 
         $rqs = null;
@@ -523,7 +523,7 @@ class ViettelPostController extends Controller
                 ($pick_ward != null ? ','.$pick_ward->name : '')
                 .','.$pick_district->name.','.$pick_city->name;
 
-            $sender_address = $user->address;
+//            $sender_address = $user->address;
 
             $requestArr = array(
                 "ORDER_NUMBER" => $order->order_number.$auto_num,
@@ -537,7 +537,7 @@ class ViettelPostController extends Controller
                 "SENDER_EMAIL" => $user->email,
                 "SENDER_WARD" => ($pick_ward != null ?  $pick_ward->viettelpost_id : 0),
                 "SENDER_DISTRICT" => $pick_district->viettelpost_id,
-                "SENDER_PROVINCE" => $pick_city->viettelpost_id,
+                "SENDER_PROVINCE" => (int)$pick_city->viettelpost_id,
                 "RECEIVER_FULLNAME" => $order->is_shipdiff ? $order->shipping_name : $order->customer_name,
                 "RECEIVER_ADDRESS" => $receiver_address,
                 "RECEIVER_PHONE" => $order->is_shipdiff ? $order->shipping_phone : $order->customer_phone,
@@ -549,6 +549,7 @@ class ViettelPostController extends Controller
                 "PRODUCT_QUANTITY" => $quantity,
                 "PRODUCT_PRICE" => $totalamount,
                 "PRODUCT_WEIGHT" => $totalweight,
+                'PRODUCT_DESCRIPTION' => $listname,
                 "PRODUCT_TYPE" => "HH",
                 "ORDER_SERVICE_ADD" => "",
                 "ORDER_VOUCHER" => "",
@@ -622,7 +623,7 @@ class ViettelPostController extends Controller
             // $rrs [] = $rqs;
             // $rrs [] = $rps;
             // dd($rrs);
-
+            Log::debug($requestArr);
             Log::debug($response);
             if(!$response){
                 return array(false, $order, "Response failed!");
