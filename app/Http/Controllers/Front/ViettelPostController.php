@@ -413,7 +413,6 @@ class ViettelPostController extends Controller
     }
 
     public function createorder($order, $cart){
-        // dd($temp_shipping_info);
         $url = config('app.viettel_post.order_url');
         $user = null;
         $digital = 1;
@@ -449,7 +448,7 @@ class ViettelPostController extends Controller
 
         if (!$to_province || !$to_district) return array(false, $order, "To destination null");
         $receiver_address = $order->is_shipdiff ? $order->shipping_address : $order->customer_address;
-        $receiver_address = $receiver_address.','.$to_ward->name.','.$to_district->name.','.$to_province->name;
+        //$receiver_address = $receiver_address.','.$to_ward->name.','.$to_district->name.','.$to_province->name;
         $order_shipping_cost = 0;
 
         $rqs = null;
@@ -523,6 +522,8 @@ class ViettelPostController extends Controller
                 ($pick_ward != null ? ','.$pick_ward->name : '')
                 .','.$pick_district->name.','.$pick_city->name;
 
+            $sender_address = $user->address;
+
             $requestArr = array(
                 "ORDER_NUMBER" => $order->order_number.$auto_num,
                 // "GROUPADDRESS_ID" => config('app.viettel_post.group_address_id'),
@@ -553,6 +554,7 @@ class ViettelPostController extends Controller
                 "ORDER_NOTE" => "",
                 "LIST_ITEM" => $listproduct,
             );
+            dd($requestArr);
             $header = array(
                 'Content-Type: application/json',
                 'Token: '.$token
