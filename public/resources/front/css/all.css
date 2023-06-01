@@ -15480,7 +15480,7 @@ p.product-unit-price {
     }
 }
 @media (max-width: 749px){
-    .hero-area .hero-area-slider .intro-carousel .intro-content{
+    .hero-area-slider{
         display:none;
     }
     .mobile-slider{
