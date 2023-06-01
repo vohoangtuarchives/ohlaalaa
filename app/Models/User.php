@@ -650,6 +650,21 @@ class User extends Authenticatable
         return $result;
     }
 
+    public function full_shop_address()
+    {
+        $result = $this->shop_address;
+        $p = $this->province;
+        $d = $this->district;
+        $w = $this->ward;
+        if(isset($p))
+            $result = $this->shop_address.', '.$p->name;
+        if(isset($w))
+            $result = $this->shop_address.', '.$d->name.', '.$p->name;
+        if(isset($w))
+            $result = $this->shop_address.', '.$w->name.', '.$d->name.', '.$p->name;
+        return $result;
+    }
+
     public function categories(){
         return Category::join('products as p', 'p.category_id', '=', 'categories.id')
             ->where('p.user_id','=',$this->id)

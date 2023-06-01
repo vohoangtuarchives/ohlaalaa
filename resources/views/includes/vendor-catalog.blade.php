@@ -249,7 +249,7 @@
                     </li>
                     <li>
                         <span>
-                            <i class="icofont-location-pin"></i> <span class="service-text">{{$vendor->full_address()}}</span>
+                            <i class="icofont-location-pin"></i> <span class="service-text">{{$vendor->full_shop_address()}}</span>
                         </span>
                     </li>
                 </ul>
