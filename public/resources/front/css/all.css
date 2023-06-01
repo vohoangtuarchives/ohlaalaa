@@ -15450,3 +15450,8 @@ p.product-unit-price {
     align-items: center;
     justify-content: center;
 }
+@media (min-width: 1900px){
+    .hero-area .hero-area-slider .intro-carousel .intro-content{
+        heigh: 800px!important;
+    }
+}

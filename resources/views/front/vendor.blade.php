@@ -15,7 +15,11 @@ body {
 @section('content')
 @isset($vendor->shop_image)
 <!-- Vendor Area Start -->
-  <div class="vendor-banner" style="background: url({{  $vendor->show_banner() }}); background-repeat: no-repeat; background-size: cover;background-position: center;{!! $vendor->shop_image != null ? '' : 'background-color:'.$gs->vendor_color !!} ">
+    <div class="new_vendor-banner">
+        <img src="{{  $vendor->show_banner() }}" alt="{{  Request::route('name') }}">
+    </div>
+{{--  <div class="vendor-banner" style="background: url({{  $vendor->show_banner() }}); background-repeat: no-repeat; background-size: cover;--}}
+{{--  background-position: center;{!! $vendor->shop_image != null ? '' : 'background-color:'.$gs->vendor_color !!} ">--}}
 
     {{-- <div class="container">
       <div class="row">
