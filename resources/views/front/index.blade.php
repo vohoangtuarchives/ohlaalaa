@@ -20,13 +20,19 @@
 		<section class="hero-area">
 			@if($ps->slider == 1)
 				@if(count($sliders))
+					<div class="mobile-slider">
+						<div class="slide-progress"></div>
+						<div class="intro-carousel">
+							@foreach($sliders as $data)
+								<img src="{{ $htd_photo->show_photo($data->photo, 'sliders') }}" alt="{{$data->id}}">
+							@endforeach
+						</div>
+					</div>
 					<div class="hero-area-slider">
 						<div class="slide-progress"></div>
 						<div class="intro-carousel">
 							@foreach($sliders as $data)
-								<div class="mobile-slider" style="display: none;">
-									<img src="{{ $htd_photo->show_photo($data->photo, 'sliders') }}" alt="{{$data->id}}">
-								</div>
+
 								{{-- <div class="intro-content {{$data->position}}" style="background-image: url({{asset('assets/images/sliders/'.$data->photo)}})"> --}}
                                 <div class="intro-content {{$data->position}}" style="background-image: url({{ $htd_photo->show_photo($data->photo, 'sliders') }})">
 									<div class="container">
