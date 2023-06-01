@@ -24,7 +24,13 @@
 						<div class="slide-progress"></div>
 						<div class="intro-carousel">
 							@foreach($sliders as $data)
-								<img src="{{ $htd_photo->show_photo($data->photo, 'sliders') }}" alt="{{$data->id}}">
+								<div class="position-relative">
+									<div class="layer-3 {{$data->position}}">
+										<a href="{{$data->link}}" target="_blank" class="mybtn1"><span>{{ $langg->lang25 }} <i class="fas fa-chevron-right"></i></span></a>
+									</div>
+									<img src="{{ $htd_photo->show_photo($data->photo, 'sliders') }}" alt="{{$data->id}}">
+								</div>
+
 							@endforeach
 						</div>
 					</div>

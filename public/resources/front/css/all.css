@@ -15487,3 +15487,11 @@ p.product-unit-price {
         display:block!important;
     }
 }
+.mobile-slider .slide-three{
+    position: absolute;
+    right: 20px;
+    bottom: 35px;
+}
+.mobile-slider .slide-three .mybtn1:hover{
+    background: #fff;
+}
