@@ -15476,15 +15476,29 @@ p.product-unit-price {
 }
 @media (min-width: 1300px){
     .hero-area .hero-area-slider .intro-carousel .intro-content{
-        height:715px;
+        height:530px;
     }
 }
 @media (min-width: 1400px){
     .hero-area .hero-area-slider .intro-carousel .intro-content{
-        height:767px;
+        height:580px;
     }
 }
-
+@media (min-width: 1500px){
+    .hero-area .hero-area-slider .intro-carousel .intro-content{
+        height:630px;
+    }
+}
+@media (min-width: 1600px){
+    .hero-area .hero-area-slider .intro-carousel .intro-content{
+        height:680px;
+    }
+}
+@media (min-width: 1700px){
+    .hero-area .hero-area-slider .intro-carousel .intro-content{
+        height:730px;
+    }
+}
 @media (min-width: 1800px){
     .hero-area .hero-area-slider .intro-carousel .intro-content{
         height: 800px;
