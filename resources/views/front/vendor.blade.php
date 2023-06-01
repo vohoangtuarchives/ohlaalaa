@@ -16,10 +16,8 @@ body {
 @isset($vendor->shop_image)
 <!-- Vendor Area Start -->
     <div class="new_vendor-banner">
-        <div class="container">
-            <div class="row">
+        <div class="w-100">
                 <img src="{{  $vendor->show_banner() }}" alt="{{  Request::route('name') }}">
-            </div>
         </div>
     </div>
 {{--  <div class="vendor-banner" style="background: url({{  $vendor->show_banner() }}); background-repeat: no-repeat; background-size: cover;--}}
