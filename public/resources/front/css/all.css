@@ -14017,7 +14017,7 @@ p.product-unit-price {
 @media (max-width: 1366px){
 
     .hero-area .hero-area-slider .intro-carousel .intro-content {
-        height: 500px;
+        height: 540px;
     }
     .logo-header .helpful-links ul li[data-toggle="tooltip"], .logo-header .helpful-links ul li[data-toggle="tooltip"] {
         margin-top: 16px;
@@ -15452,6 +15452,35 @@ p.product-unit-price {
 }
 @media (min-width: 1900px){
     .hero-area .hero-area-slider .intro-carousel .intro-content{
-        heigh: 800px!important;
+        height: 800px!important;
+    }
+}
+@media (min-width: 1200px){
+    .hero-area .hero-area-slider .intro-carousel .intro-content{
+        height: 490px!important;
+    }
+}
+@media (min-width: 900px){
+    .hero-area .hero-area-slider .intro-carousel .intro-content{
+        height: 415px!important;
+    }
+}
+@media (min-width: 800px){
+    .hero-area .hero-area-slider .intro-carousel .intro-content{
+        height: 340px!important;
+    }
+}
+
+@media (min-width: 750px){
+    .hero-area .hero-area-slider .intro-carousel .intro-content{
+        height: 320px!important;
+    }
+}
+@media (max-width: 749px){
+    .hero-area .hero-area-slider .intro-carousel .intro-content{
+        display:none;
+    }
+    .mobile-slider{
+        display:block!important;
     }
 }
