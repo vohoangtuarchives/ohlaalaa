@@ -15474,7 +15474,18 @@ p.product-unit-price {
         height: 490px;
     }
 }
-@media (min-width: 1900px){
+@media (min-width: 1300px){
+    .hero-area .hero-area-slider .intro-carousel .intro-content{
+        height:715px;
+    }
+}
+@media (min-width: 1400px){
+    .hero-area .hero-area-slider .intro-carousel .intro-content{
+        height:767px;
+    }
+}
+
+@media (min-width: 1800px){
     .hero-area .hero-area-slider .intro-carousel .intro-content{
         height: 800px;
     }
