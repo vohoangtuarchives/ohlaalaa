@@ -20,7 +20,7 @@
 		<section class="hero-area">
 			@if($ps->slider == 1)
 				@if(count($sliders))
-					<div class="mobile-slider">
+					<div class="mobile-slider" style="display: none">
 						<div class="slide-progress"></div>
 						<div class="intro-carousel">
 							@foreach($sliders as $data)
