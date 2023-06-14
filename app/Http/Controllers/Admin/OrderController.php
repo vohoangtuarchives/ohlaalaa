@@ -124,7 +124,12 @@ class OrderController extends Controller
         if($from != null){
             $nDays = 1;
             $to = date("Y-m-d",strtotime($to . '+ '.$nDays.'days'));
-            $query = $query->whereBetween('updated_at',[$from, $to]);
+            if($status == 'completed'){
+                $query = $query->whereBetween('updated_at',[$from, $to]);
+            }else{
+                $query = $query->whereBetween('created_at',[$from, $to]);
+            }
+
         }
         return $query;
     }
