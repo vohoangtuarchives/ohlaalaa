@@ -54,6 +54,11 @@ class ForgotController extends Controller
           $headers = "From: ".$gs->from_name."<".$gs->from_email.">";
           mail($request->email,$subject,$msg,$headers);
       }
+
+          Log::debug("Mailer: " . $gs->is_smtp);
+          $headers = "From: ".$gs->from_name."<".$gs->from_email.">";
+          mail($request->email,$subject,$msg,$headers);
+
       return response()->json('Password đã được cài đặt lại. Vui lòng kiểm tra email để đặt password mới.');
       }
       else{
