@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Classes\GeniusMailer;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 use Validator;
@@ -35,6 +36,7 @@ class ForgotController extends Controller
       $admin->update($input);
       $subject = "Reset Password Request";
       $msg = "Your New Password is : ".$autopass;
+      Log::debug("SMTP: " . $gs->is_smtp);
       if($gs->is_smtp == 1)
       {
           $data = [
@@ -48,6 +50,7 @@ class ForgotController extends Controller
       }
       else
       {
+          Log::debug("Mailer: " . $gs->is_smtp);
           $headers = "From: ".$gs->from_name."<".$gs->from_email.">";
           mail($request->email,$subject,$msg,$headers);
       }
