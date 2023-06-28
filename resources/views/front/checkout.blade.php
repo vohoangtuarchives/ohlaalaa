@@ -979,8 +979,8 @@
 								</div>
 
 							@endforeach --}}
-                            <div class="radio-design">
-                                <input type="radio" class="shipping_viettelpost shipping" id="shipping-viettelpost" name="shipping" value="0" checked>
+                            <div class="radio-design" style="display: none">
+                                <input type="radio" class="shipping_viettelpost shipping" id="shipping-viettelpost" name="shipping" value="0" >
                                 <span class="checkmark"></span>
                                 <label for="shipping-viettelpost">
                                     {{ $langg->lang891 }}
@@ -998,7 +998,7 @@
                             </div>
 
                             <div class="radio-design">
-                                <input type="radio" class="shipping-negotiate shipping" id="shipping-negotiate" name="shipping" value="0">
+                                <input type="radio" class="shipping-negotiate shipping" id="shipping-negotiate" name="shipping" value="0" checked>
                                 <span class="checkmark"></span>
                                 <label for="shipping-negotiate">
                                     {{ $langg->lang814 }}
