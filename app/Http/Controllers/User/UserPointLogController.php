@@ -34,7 +34,8 @@ class UserPointLogController extends Controller
                 'Order - Shop Declined',
                 'Buying Package Bonus',
                 'KOL Consumer Bonus',
-                'KOL Affiliate Bonus'
+                'KOL Affiliate Bonus',
+                'Admin Transfer Point'
             );
         }
 

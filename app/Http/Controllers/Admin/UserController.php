@@ -1424,9 +1424,6 @@ class UserController extends Controller
 
             $toCustomer = User::where("email", "=", $request->input("to_customer"))->first();
 
-            $fromCustomer->shopping_point = $fromCustomer->shopping_point - $request->get("amount");
-            $toCustomer->shopping_point = $toCustomer->shopping_point + $request->get("amount");
-
             $point_exchange = $request->input("amount");
 
             $point_log = new UserPointLog();
