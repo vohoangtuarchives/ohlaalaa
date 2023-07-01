@@ -37,6 +37,7 @@
                                             <option value="Buying Package Bonus" >{{ $langg->lang912 }}</option>
                                             <option value="KOL Consumer Bonus" >{{ $langg->lang913 }}</option>
                                             <option value="KOL Affiliate Bonus" >{{ $langg->lang916 }}</option>
+                                            <option value="Admin Transfer Point" >Transfer Point</option>
                                         </select>
                                         <input type="hidden" id="admin_loader" value="{{ $gs->admin_loader }}">
                                         {{-- <a class="add-btn" id="add-data-1" data-toggle="modal" data-target="#modal1"> --}}
