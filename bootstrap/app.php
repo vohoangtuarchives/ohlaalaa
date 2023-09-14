@@ -14,7 +14,8 @@
 $app = new Illuminate\Foundation\Application(
     dirname(__DIR__)
 );
-if(\Illuminate\Support\Str::contains($_SERVER['SERVER_ADDR'], "127.0.0.1") === false){
+//dd($_SERVER['SERVER_ADDR'], \Illuminate\Support\Str::contains($_SERVER['SERVER_ADDR'], "127.0.0.1"));
+if(isset($_SERVER['SERVER_ADDR']) && \Illuminate\Support\Str::contains($_SERVER['SERVER_ADDR'], "127.0.0.1") === false){
     $app->bind('path.public', function() {
         return base_path() . '/../';
     });

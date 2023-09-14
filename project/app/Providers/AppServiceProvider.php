@@ -68,19 +68,18 @@ class AppServiceProvider extends ServiceProvider
                 $data = cache()->remember('session_language', now()->addDay(), function () {
                     return DB::table('languages')->find(Session::get('language'));
                 });
-                $data_results = file_get_contents(public_path().'/assets/languages/'.$data->file);
-                $lang = json_decode($data_results);
 
-                $settings->with('langg', $lang);
             }
             else{
                 $data = cache()->remember('default_language', now()->addDay(), function () {
                     return DB::table('languages')->where('is_default','=',1)->first();
                 });
-                $data_results = file_get_contents(public_path().'/assets/languages/'.$data->file);
-                $lang = json_decode($data_results);
-                $settings->with('langg', $lang);
             }
+
+            $data_results = file_get_contents(public_path().'/assets/languages/'.$data->file);
+            $lang = json_decode($data_results);
+
+            $settings->with('langg', $lang);
 
             if (!Session::has('popup'))
             {

@@ -49,7 +49,7 @@ class CometChatHTD
             $data['data'] = $u['data'];
             $data['authToken'] =  CometChatHTD::get_auth_token($uid);
         }else{
-            if($u['error']['code'] == 'ERR_UID_NOT_FOUND'){
+            if(isset($u['error']['code']) && $u['error']['code'] == 'ERR_UID_NOT_FOUND'){
                 $api_key = config('app.comet_chat.api_key');
                 $url = CometChatHTD::get_url().'users';
                 $header = array(

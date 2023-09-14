@@ -57,7 +57,7 @@
                           </div>
                           <div class="col-lg-7">
                             <div class="img-upload">
-                                <div id="image-preview" class="img-preview" style="background: url({{ asset('assets/admin/images/upload.png') }});">
+                                <div id="image-preview" class="img-preview" style="background: url({{ asset('resources/admin/images/upload.png') }});">
                                     <label for="image-upload" class="img-label" id="image-label"><i class="icofont-upload-alt"></i>{{ __('Upload Icon') }}</label>
                                     <input type="file" name="photo" class="img-upload" id="image-upload">
                                   </div>
@@ -90,7 +90,7 @@
                             </div>
                             <div class="col-lg-7">
                               <div class="img-upload">
-                                <div id="image-preview" class="img-preview" style="background: url({{ asset('assets/admin/images/upload.png') }});">
+                                <div id="image-preview" class="img-preview" style="background: url({{ asset('resources/admin/images/upload.png') }});">
                                   <label for="image-upload" class="img-label"><i class="icofont-upload-alt"></i>{{ __('Upload Image') }}</label>
                                   <input type="file" name="image" class="img-upload">
                                 </div>
